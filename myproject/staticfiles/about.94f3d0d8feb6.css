@@ -1,0 +1,279 @@
+/* ================= THEME ================= */
+:root {
+    --bg-black: #000000;
+    --dark-black: #0b0b0b;
+    --gold: #d4af37;
+    --fire-red: #e50914;
+    --soft-gray: #9a9a9a;
+}
+
+/* ================= BASE ================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--bg-black);
+    color: var(--gold);
+}
+
+/* ================= BACK LINK ================= */
+.back-link {
+    margin: 20px;
+}
+.back-link a {
+    color: var(--soft-gray);
+    font-size: 14px;
+    text-decoration: none;
+}
+.back-link a:hover {
+    color: var(--fire-red);
+}
+
+/* ================= HERO ================= */
+.about-hero {
+    text-align: center;
+    padding: 40px 5%;
+}
+
+.about-logo {
+    width: 120px;
+    margin-bottom: 15px;
+}
+
+.about-hero h1 {
+    font-size: 46px;
+    font-weight: 700;
+}
+
+.highlight-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--fire-red);
+    margin-top: 10px;
+}
+
+.about-subtext {
+    width: 60%;
+    margin: 15px auto;
+    color: var(--soft-gray);
+    line-height: 1.6;
+    font-size: 20px;
+}
+
+/* ================= OUR STORY ================= */
+.our-story {
+    width: 70%;
+    margin: auto;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 15px;
+    color: var(--soft-gray);
+}
+
+.our-story h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--gold);
+}
+
+.our-story p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 20px;
+}
+
+/* ================= COMMON CARD ================= */
+.card-box {
+    border-radius: 14px;
+    padding: 20px;
+    background: var(--dark-black);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow:
+        0 0 15px rgba(212, 175, 55, 0.15),
+        0 0 25px rgba(229, 9, 20, 0.12);
+    transition: 0.3s ease;
+}
+
+.card-box:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 0 25px rgba(229, 9, 20, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.3);
+}
+
+/* ================= OUR MISSION ================= */
+.mission {
+    text-align: center;
+    padding: 40px 5%;
+}
+
+.mission h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var(--fire-red);
+}
+
+.mission-grid {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.mission-box {
+    width: 280px;
+    padding: 25px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #120000, #1f0000);
+    border: 1px solid rgba(229, 9, 20, 0.4);
+    color: var(--gold);
+    box-shadow: 0 0 18px rgba(229, 9, 20, 0.25);
+    text-align: center;
+}
+
+.mission-box .icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* ================= WHAT SETS US APART ================= */
+.sets-apart {
+    padding: 30px 5%;
+    text-align: center;
+}
+
+.sets-apart h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var(--fire-red);
+}
+
+.apart-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.apart-card {
+    background: var(--dark-black);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.2);
+    transition: 0.3s ease;
+}
+
+.apart-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 0 25px rgba(229, 9, 20, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.3);
+}
+
+.apart-card .icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* ================= PRODUCT LINES ================= */
+.product-lines {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.product-lines h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var(--fire-red);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 80%;
+    margin: auto;
+}
+
+.product-card {
+    background: var(--dark-black);
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.2);
+    transition: 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 0 25px rgba(229, 9, 20, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.3);
+}
+
+/* ================= JOIN COMMUNITY ================= */
+.join-block {
+    text-align: center;
+    padding: 50px 0;
+    background: linear-gradient(135deg, #120000, #2a0000);
+    border-radius: 16px;
+    margin: 40px auto;
+    width: 85%;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.4);
+}
+
+.join-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--fire-red);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.6);
+}
+
+.btn-primary:hover {
+    background: #b20710;
+}
+
+.btn-secondary {
+    border: 1px solid var(--gold);
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--gold);
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 991px){
+    .about-subtext { width: 90%; }
+    .mission-grid { flex-direction: column; align-items: center; }
+    .apart-grid, .product-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+}
+
+@media(max-width: 600px){
+    .highlight-text { font-size: 18px; }
+}
