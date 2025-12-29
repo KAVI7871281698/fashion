@@ -19,7 +19,8 @@ SECRET_KEY = os.environ.get(
     "unsafe-secret-key-for-local-only"
 )
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+# DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
