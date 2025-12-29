@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-6l@4g2_@sg((elxp(myv^n07i^!=$z6icv^!9mxerd=^+!ds)u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['kavipriyan.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -104,17 +103,15 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'KAVIPRIYAN$infinite',
-        'USER': 'KAVIPRIYAN',
-        'PASSWORD': 'Kavi@7871',
-        'HOST': 'KAVIPRIYAN.mysql.pythonanywhere-services.com',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'infinite',        # database name
+        'USER': 'postgres',         # or django_user
+        'PASSWORD': 'Kavi@7871',  # your PostgreSQL password
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 
 

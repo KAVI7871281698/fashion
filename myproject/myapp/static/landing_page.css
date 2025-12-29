@@ -1,6 +1,6 @@
 /* ================= THEME COLORS ================= */
 :root {
-    --bg-black: hwb(0 92% 6%);
+    --bg-black: lab(1.43% 0.26 0.09);
     --gold: #d4af37;        /* Golden */
     --fire-red: #e50914;    /* Fire Red */
     --dark-gray: #111111;
