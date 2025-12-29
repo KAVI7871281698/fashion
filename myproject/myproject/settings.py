@@ -34,7 +34,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # your app
     'myapp',
+
+    # cloudinary (for FREE image hosting)
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 # --------------------------------------------------
@@ -69,6 +74,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
+                # your custom context processors
                 'myapp.context_processors.cart_count',
                 'myapp.context_processors.logged_in_user',
             ],
@@ -79,7 +85,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # --------------------------------------------------
-# DATABASE (RENDER POSTGRESQL - REQUIRED)
+# DATABASE (RENDER POSTGRESQL)
 # --------------------------------------------------
 DATABASES = {
     'default': dj_database_url.config(
@@ -108,12 +114,23 @@ USE_I18N = True
 USE_TZ = True
 
 # --------------------------------------------------
-# STATIC FILES
+# STATIC FILES (RENDER + WHITENOISE)
 # --------------------------------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# --------------------------------------------------
+# CLOUDINARY (FREE MEDIA STORAGE - VERY IMPORTANT)
+# --------------------------------------------------
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
 
 # --------------------------------------------------
 # DEFAULT PRIMARY KEY
