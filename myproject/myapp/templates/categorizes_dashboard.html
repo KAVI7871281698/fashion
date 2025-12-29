@@ -1,0 +1,71 @@
+{% extends "dashboard_base.html" %}
+{% block content %}
+
+<h1>Categories</h1>
+
+<div class="table-wrapper">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Category Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for c in categories %}
+      <tr>
+        <td>{{ c }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td class="empty">No categories found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<style>
+.table-wrapper {
+  background: #111;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1A1A1A;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-table thead {
+  background: #E50914;
+}
+
+.admin-table th {
+  color: #ffffff;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 14px;
+}
+
+.admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #333;
+}
+
+.admin-table tbody tr:hover {
+  background: #2A2A2A;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: #000;
+            color: #d4af37;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .checkout-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        h1 { text-align: center; }
+
+        .box {
+            background: #111;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(212,175,55,0.3);
+            margin-bottom: 25px;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; border-bottom: 1px solid #222; }
+        th { color: #e50914; text-align: left; }
+
+        img { width: 50px; height: 50px; border-radius: 6px; }
+
+        textarea, input, select {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border: 1px solid #333;
+            color: #d4af37;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 6px 0;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 14px;
+            background: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .order-btn:hover { background: #b20710; }
+
+        .apply-btn {
+            background: #d4af37;
+            color: #000;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="checkout-container">
+    <h1>🧾 Order Summary</h1>
+
+    <!-- CART -->
+    <div class="box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>
+                        <img src="{{ item.add_to_cart_product.product_img.url }}">
+                        {{ item.add_to_cart_product.product_name }}
+                    </td>
+                    <td>₹{{ item.add_to_cart_product.product_price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹{{ item.total_price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ORDER FORM -->
+    <form method="POST" action="{% url 'order_now' %}">
+        {% csrf_token %}
+
+        <div class="box">
+            <label>📍 Delivery Address</label>
+            <textarea name="delivery_address" required></textarea>
+
+            <label>📅 Delivery Date</label>
+            <input type="date" name="delivery_date" required>
+
+            <!-- COUPON -->
+            <label>🎟 Select Coupon</label>
+            <select id="couponSelect" name="coupon_code">
+                <option value="">-- Select Coupon --</option>
+                {% for c in coupons %}
+                <option
+                    value="{{ c.code }}"
+                    data-type="{{ c.discount_type }}"
+                    data-value="{{ c.discount_value }}"
+                >
+                    {{ c.code }} (
+                    {% if c.discount_type == "flat" %}
+                        ₹{{ c.discount_value }} OFF
+                    {% else %}
+                        {{ c.discount_value }}% OFF
+                    {% endif %}
+                    )
+                </option>
+                {% endfor %}
+            </select>
+
+            <button type="button" class="apply-btn" onclick="applyCoupon()">
+                Apply Coupon
+            </button>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="box">
+            <div class="price-row">
+                <span>Subtotal</span>
+                <strong>₹<span id="subtotal">{{ total_amount }}</span></strong>
+            </div>
+
+            <div class="price-row">
+                <span>Discount</span>
+                <strong>- ₹<span id="discount">0.00</span></strong>
+            </div>
+
+            <hr>
+
+            <div class="price-row">
+                <span>Total Payable</span>
+                <strong>₹<span id="final">{{ total_amount }}</span></strong>
+            </div>
+
+            <button type="submit" class="order-btn">
+                Proceed to Payment
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- ✅ FIXED COUPON LOGIC -->
+<script>
+function applyCoupon() {
+    const select = document.getElementById("couponSelect");
+    const option = select.options[select.selectedIndex];
+
+    if (!option.value) {
+        alert("Please select a coupon");
+        return;
+    }
+
+    const type = option.dataset.type;
+    const value = parseFloat(option.dataset.value);
+    const subtotal = parseFloat(document.getElementById("subtotal").innerText);
+
+    let discount = 0;
+
+    if (type === "flat") {
+        discount = value;
+    } else {
+        discount = (value / 100) * subtotal;
+    }
+
+    // ✅ CAP DISCOUNT (never allow 0 or negative payable)
+    if (discount >= subtotal) {
+        discount = subtotal - 1; // keep minimum ₹1
+    }
+
+    const final = subtotal - discount;
+
+    document.getElementById("discount").innerText = discount.toFixed(2);
+    document.getElementById("final").innerText = final.toFixed(2);
+}
+</script>
+
+</body>
+</html>

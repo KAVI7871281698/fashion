@@ -1,0 +1,66 @@
+{% extends "dashboard_base.html" %}
+
+{% block content %}
+
+<h1>Admin Dashboard</h1>
+
+<div class="cards">
+
+  <div class="card">
+    <h3>Total Orders</h3>
+    <p>{{ total_orders }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Users</h3>
+    <p>{{ total_users }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Products</h3>
+    <p>{{ total_products }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Revenue</h3>
+    <p>₹{{ total_revenue }}</p>
+  </div>
+
+</div>
+
+<style>
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.card {
+  background: #1A1A1A;
+  padding: 22px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.card h3 {
+  color: #E50914;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card p {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+}
+</style>
+
+{% endblock %}

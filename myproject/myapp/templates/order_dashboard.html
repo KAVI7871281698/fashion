@@ -1,0 +1,39 @@
+{% extends "dashboard_base.html" %}
+{% block content %}
+
+<h1>Orders</h1>
+
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>User</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </tr>
+
+  {% for o in orders %}
+  <tr>
+    <td>#{{ o.id }}</td>
+    <td>{{ o.user.name }}</td>
+    <td>{{ o.total_amount }}</td>
+    <td>{{ o.status }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<style>
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1A1A1A;
+}
+th, td {
+  padding: 14px;
+  border-bottom: 1px solid #333;
+}
+th {
+  background: #E50914;
+}
+</style>
+
+{% endblock %}

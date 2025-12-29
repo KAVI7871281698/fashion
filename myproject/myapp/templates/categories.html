@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'category.css' %}" />
+
+<!-- Back -->
+<div class="top-nav">
+  <a href="/">← Back to Home</a>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <h1>🎬 Product Categories</h1>
+  <p>
+    Explore our curated collections of cinema-inspired fashion. From everyday
+    essentials to exclusive collectibles.
+  </p>
+</div>
+
+<div class="category-wrapper">
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <h3>Filter Products</h3>
+
+    <p class="smalltext">{{ view_product|length }} products shown</p>
+
+    <h4>Categories</h4>
+    <ul>
+      <!-- ALL -->
+      <li class="{% if not selected_category %}active{% endif %}">
+        <a href="{% url 'categories' %}">
+          All Categories
+          <span>{{ total_count }}</span>
+        </a>
+      </li>
+
+      <!-- CINEPHILE TEES -->
+      <li
+        class="{% if selected_category == 'Cinephile Tees' %}active{% endif %}"
+      >
+        <a href="{% url 'categories' %}?category=Cinephile Tees">
+          Cinephile Tees
+          <span>{{ category_counts.cinephile_tees|default:0 }}</span>
+        </a>
+      </li>
+
+      <!-- PREMIUM WEAR -->
+      <li class="{% if selected_category == 'Premium Wear' %}active{% endif %}">
+        <a href="{% url 'categories' %}?category=Premium Wear">
+          Premium Wear
+          <span>{{ category_counts.premium_wear|default:0 }}</span>
+        </a>
+      </li>
+
+      <!-- ACCESSORIES -->
+      <li class="{% if selected_category == 'Accessories' %}active{% endif %}">
+        <a href="{% url 'categories' %}?category=Accessories">
+          Accessories
+          <span>{{ category_counts.accessories|default:0 }}</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ================= PRODUCTS ================= -->
+  <main class="product-section">
+    <div class="prod-toolbar">
+      <form method="get">
+        {% if selected_category %}
+        <input type="hidden" name="category" value="{{ selected_category }}" />
+        {% endif %}
+
+        <input
+          type="text"
+          name="q"
+          placeholder="Search products…"
+          value="{{ search_query }}"
+        />
+      </form>
+    </div>
+
+    <div class="product-grid">
+      {% for i in view_product %}
+      <div class="product-card">
+        <div class="badge">{{ i.product_Categorie }}</div>
+
+        {% if i.product_img %}
+        <img src="{{ i.product_img.url }}" alt="{{ i.product_name }}" />
+        {% endif %}
+
+        <h4>{{ i.product_name }}</h4>
+        <p class="desc">{{ i.product_des }}</p>
+        <p class="price">₹{{ i.product_price }}</p>
+
+        <div class="btn-wrap">
+          <a href="{% url 'add_to_cart' i.id %}" class="cart-btn">
+            🛒 Add to Cart
+          </a>
+          <a href="#" class="details-btn">View Details</a>
+        </div>
+      </div>
+      {% empty %}
+      <p>No products found in this category.</p>
+      {% endfor %}
+    </div>
+  </main>
+</div>
+
+{% endblock %}

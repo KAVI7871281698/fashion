@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= BANNER (3 COLUMN GRID) ================= -->
+<section class="banner-grid-row">
+
+    <!-- 1st Column : Image -->
+    <div class="banner-col">
+        <img src="{% static 'img/company_logo.png' %}" alt="Banner Left">
+    </div>
+
+    <!-- 2nd Column : Video -->
+    <div class="banner-col center-video">
+        <video autoplay muted loop playsinline>
+            <source src="{% static 'video/banner_video.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- 3rd Column : Image -->
+    <div class="banner-col">
+        <img src="{% static 'img/company_logo.png' %}" alt="Banner Right">
+    </div>
+
+</section>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <h1>
+        <span>Film.</span>
+        <span>Frame.</span>
+        <span class="highlight">Fashion.</span>
+    </h1>
+
+    <p>
+        Where cinema culture meets premium streetwear.
+        Discover cinema-inspired apparel for true cinephiles.
+    </p>
+
+    <div class="hero-btns">
+        <button class="shop">Shop Collection →</button>
+        <button class="story">Our Story</button>
+    </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+    <div>
+        <strong>50+</strong>
+        <p>Unique Designs</p>
+    </div>
+    <div>
+        <strong>Premium</strong>
+        <p>Quality Materials</p>
+    </div>
+    <div>
+        <strong>100%</strong>
+        <p>Cinema Inspired</p>
+    </div>
+</section>
+
+{% endblock %}

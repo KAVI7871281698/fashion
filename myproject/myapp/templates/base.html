@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Film. Frame. Fashion.</title>
+    <link rel="stylesheet" href="{% static 'landing_page.css' %}" />
+
+    <style>
+      .cart-icon {
+        position: relative;
+        font-size: 22px;
+        text-decoration: none;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -6px;
+        right: -10px;
+        background-color: #ffd700;
+        color: #000;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 50%;
+        min-width: 18px;
+        text-align: center;
+        line-height: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+      <div class="logo">
+        <img
+          src="{% static 'img/company_logo.png' %}"
+          alt="Infinite Cinephile Logo"
+        />
+      </div>
+
+      <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/categories">Categories</a>
+        <a href="/collection">Collections</a>
+        <a href="/order_details">Order Details</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        {% if request.session.email == "admin@gmail.com" %}
+        <a href="/dashboard">Dashboard</a>
+        {% endif %}
+      </nav>
+
+      <div class="auth">
+        <a href="/login">
+          <button
+            style="
+              background: #e50914;
+              color: #fff;
+              border: none;
+              padding: 5px 14px;
+              border-radius: 6px;
+              font-size: 14px;
+              cursor: pointer;
+              box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+            "
+          >
+            Sign In
+          </button>
+        </a>
+        <a href="/logout">
+          <button
+            style="
+              background: #e50914;
+              color: #fff;
+              border: none;
+              padding: 5px 14px;
+              border-radius: 6px;
+              font-size: 14px;
+              cursor: pointer;
+              box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+            "
+          >
+            Logout
+          </button>
+        </a>
+
+        {% comment %}
+        <a href="/register">
+          <button class="register">Register</button>
+        </a>
+        {% endcomment %}
+
+        <a href="{% url 'view_cart' %}" class="cart-icon">
+          🛒 {% if cart_count > 0 %}
+          <span class="cart-count">{{ cart_count }}</span>
+          {% endif %}
+        </a>
+
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+      </div>
+    </header>
+
+    <!-- ================= PAGE CONTENT ================= -->
+    {% block content %} {% endblock %}
+
+    <!-- ================= FOOTER ================= -->
+    {% include 'footer.html' %}
+
+    <!-- ================= JS ================= -->
+    <script>
+      window.addEventListener("scroll", function () {
+        document
+          .querySelector(".header")
+          .classList.toggle("fixed", window.scrollY > 80);
+      });
+
+      function toggleMenu() {
+        document.querySelector(".navbar").classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>

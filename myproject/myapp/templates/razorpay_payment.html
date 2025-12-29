@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Secure Payment | Film Frame Fashion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #111, #000);
+      font-family: "Segoe UI", sans-serif;
+      color: #fff;
+    }
+
+    .payment-card {
+      width: 100%;
+      max-width: 420px;
+      background: #111;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+      text-align: center;
+      animation: fadeUp 0.7s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      margin-bottom: 14px;
+    }
+
+    .logo img {
+      width: 140px;
+    }
+
+    .title {
+      font-size: 20px;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 26px;
+    }
+
+    .amount-box {
+      background: #000;
+      border: 1px dashed #d4af37;
+      padding: 18px;
+      border-radius: 14px;
+      margin-bottom: 26px;
+    }
+
+    .amount-box span {
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    .amount {
+      font-size: 32px;
+      font-weight: bold;
+      color: #d4af37;
+      margin-top: 4px;
+    }
+
+    .pay-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      color: #fff;
+      background: linear-gradient(135deg, #e50914, #b20710);
+      box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+      transition: 0.3s;
+    }
+
+    .pay-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(229, 9, 20, 0.8);
+    }
+
+    .secure {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .secure span {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      .payment-card {
+        margin: 0 14px;
+        padding: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="payment-card">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="{% static 'img/company_logo.png' %}" alt="Film Frame Fashion">
+    </div>
+
+    <h2 class="title">Secure Payment</h2>
+    <p class="subtitle">Complete your purchase safely</p>
+
+    <!-- AMOUNT -->
+    <div class="amount-box">
+      <span>Total Payable</span>
+      <div class="amount">₹{{ final_amount }}</div>
+    </div>
+
+    <!-- PAY BUTTON -->
+    <button id="pay-btn" class="pay-btn">
+      Pay Now with Razorpay
+    </button>
+
+    <div class="secure">
+      🔒 <span>100% Secure</span> • Powered by Razorpay
+    </div>
+
+  </div>
+
+  <!-- ================= RAZORPAY SCRIPT ================= -->
+  <script>
+    var options = {
+      "key": "{{ razorpay_key }}",
+      "amount": "{{ amount }}",
+      "currency": "INR",
+      "name": "Film Frame Fashion",
+      "description": "Order Payment",
+      "order_id": "{{ order_id }}",
+      "handler": function (response) {
+        window.location.href =
+          "/payment-success/?" +
+          "payment_id=" + response.razorpay_payment_id +
+          "&order_id=" + response.razorpay_order_id +
+          "&signature=" + response.razorpay_signature;
+      },
+      "theme": {
+        "color": "#E50914"
+      }
+    };
+
+    var rzp = new Razorpay(options);
+
+    document.getElementById('pay-btn').onclick = function (e) {
+      rzp.open();
+      e.preventDefault();
+    };
+  </script>
+
+</body>
+</html>

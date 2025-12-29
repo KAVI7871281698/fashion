@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="faq-page">
+
+  <!-- ================= FAQ SECTION ================= -->
+  <div class="faq-card">
+
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h4>How long does shipping take?</h4>
+      <p>
+        Standard shipping typically takes <strong>3–7 business days</strong>
+        within India. Delivery times may vary depending on your location.
+        Express shipping options are also available at checkout for faster delivery.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Can I return or exchange items?</h4>
+      <p>
+        Yes, we offer a <strong>30-day return and exchange policy</strong>.
+        Products must be unworn, unused, and returned with original tags attached.
+        Size exchanges are subject to availability.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Do you offer custom designs?</h4>
+      <p>
+        Absolutely. We provide custom design services including
+        <strong>DTF printing on apparel</strong>.
+        Visit our Special Services page or contact our support team
+        to discuss your custom requirements.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h4>How can I track my order?</h4>
+      <p>
+        Once your order is shipped, you can track it using your
+        <strong>Order ID and registered email address</strong>
+        on our order tracking page to receive real-time updates.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ================= HELP BOX ================= -->
+  <div class="help-box">
+    <h3>Need Immediate Help?</h3>
+    <p>
+      For urgent order issues or time-sensitive inquiries,
+      please contact our support team directly.
+    </p>
+
+    <a href="mailto:Infinitecinephile@gmail.com" class="help-btn">
+      📧 Email Support
+    </a>
+
+   <a href="tel:8668137292"> <p class="call-link">📞 Call Us</p></a>
+  </div>
+
+</section>
+
+<!-- ================= STYLES ================= -->
+<style>
+/* ===== PAGE WIDTH ===== */
+.faq-page {
+  width: 70%;                 /* 🔥 70% SCREEN */
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* ===== FAQ CARD ===== */
+.faq-card {
+  background: #111;
+  padding: 32px;
+  border-radius: 18px;
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 22px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.faq-item {
+  margin-bottom: 30px;
+}
+
+.faq-item h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #e50914;
+}
+
+.faq-item p {
+  font-size: 15px;
+  color: #d0d0d0;
+  line-height: 1.8;
+}
+
+/* ===== HELP BOX ===== */
+.help-box {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.help-box h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.help-box p {
+  font-size: 15px;
+  color: #bdbdbd;
+  line-height: 1.7;
+}
+
+.help-btn {
+  display: inline-block;
+  margin: 18px 0;
+  background: #e50914;
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.help-btn:hover {
+  background: #b20710;
+}
+
+.call {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .faq-page {
+    width: 95%;
+    margin: 40px auto;
+  }
+
+  .faq-card {
+    padding: 24px;
+  }
+}
+
+.call-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #e50914;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 18px;
+  border: 1px solid #e50914;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.call-link:hover {
+  background: #e50914;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.6);
+  transform: translateY(-2px);
+}
+
+</style>
+
+{% endblock %}

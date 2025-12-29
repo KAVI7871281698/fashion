@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= SIGNATURE COLLECTION ================= -->
+<section class="signature-section">
+
+  <h1 class="title">Signature Collection</h1>
+  <p class="subtitle">
+    Our most iconic cinema-inspired designs — crafted for true cinephiles.
+  </p>
+
+</section>
+
+<!-- ================= PRODUCT SECTION ================= -->
+<main class="product-section">
+
+  <!-- SEARCH -->
+  <form method="get" class="prod-toolbar">
+    <input
+      type="text"
+      name="q"
+      placeholder="Search products…"
+      value="{{ request.GET.q }}"
+    />
+  </form>
+
+  <!-- PRODUCTS GRID -->
+  <div class="product-grid">
+
+    {% for i in products %}
+    <div class="product-card">
+
+      <div class="badge">{{ i.product_Categorie }}</div>
+
+      {% if i.product_img %}
+        <img src="{{ i.product_img.url }}" alt="{{ i.product_name }}">
+      {% else %}
+        <img src="{% static 'img/no-image.png' %}" alt="No Image">
+      {% endif %}
+
+      <h4>{{ i.product_name }}</h4>
+      <p class="desc">{{ i.product_des }}</p>
+      <p class="price">₹{{ i.product_price }}</p>
+
+      <div class="btn-wrap">
+        <a href="{% url 'add_to_cart' i.id %}" class="cart-btn">
+          🛒 Add to Cart
+        </a>
+        <a href="#" class="details-btn">
+          View Details
+        </a>
+      </div>
+
+    </div>
+
+    {% empty %}
+      <p class="empty">No products found</p>
+    {% endfor %}
+
+  </div>
+</main>
+
+<!-- ================= STYLES ================= -->
+<style>
+.signature-section {
+  padding: 60px 8% 20px;
+  background: #000;
+  color: #d4af37;
+  text-align: center;
+}
+
+.title {
+  font-size: 42px;
+}
+
+.subtitle {
+  color: #aaa;
+}
+
+.product-section {
+  padding: 40px 8% 80px;
+  background: #000;
+}
+
+.prod-toolbar {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.prod-toolbar input {
+  width: 260px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: #d4af37;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background: #111;
+  border-radius: 16px;
+  padding: 20px;
+  transition: 0.4s;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #e50914;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.product-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 15px;
+}
+
+.product-card h4 {
+  color: #e50914;
+  margin-bottom: 6px;
+}
+
+.desc {
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.btn-wrap {
+  display: flex;
+  gap: 10px;
+}
+
+.cart-btn, .details-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.cart-btn {
+  background: #e50914;
+  color: #fff;
+}
+
+.cart-btn:hover {
+  background: #b20710;
+}
+
+.details-btn {
+  border: 1px solid #e50914;
+  color: #e50914;
+}
+
+.details-btn:hover {
+  background: #e50914;
+  color: #fff;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.empty {
+  color: #999;
+  text-align: center;
+}
+</style>
+
+{% endblock %}

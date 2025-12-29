@@ -1,0 +1,86 @@
+{% extends "dashboard_base.html" %}
+{% block content %}
+
+<h1>Products</h1>
+
+<div class="table-wrapper">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for p in products %}
+      <tr>
+        <td>{{ p.product_name }}</td>
+        <td class="price">₹{{ p.product_price }}</td>
+        <td>{{ p.product_Categorie }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3" class="empty">No products found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<style>
+.table-wrapper {
+  background: #111;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1A1A1A;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-table thead {
+  background: #E50914;
+}
+
+.admin-table th {
+  color: #ffffff;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #333;
+  font-size: 14px;
+}
+
+.admin-table td.price {
+  font-weight: 600;
+}
+
+.admin-table tbody tr:hover {
+  background: #2A2A2A;
+  transition: 0.25s;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+}
+</style>
+
+{% endblock %}

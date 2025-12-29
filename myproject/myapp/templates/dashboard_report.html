@@ -1,0 +1,208 @@
+{% extends "dashboard_base.html" %}
+{% block content %}
+
+<h1 class="page-title">Reports Overview</h1>
+
+<!-- ===== CHART CARD ===== -->
+<div class="chart-card">
+  <div class="chart-header">
+    <h3>Performance Summary</h3>
+    <span>Current Month</span>
+  </div>
+
+  <div class="chart-wrapper">
+    <canvas id="reportChart"></canvas>
+  </div>
+</div>
+
+<!-- ===== SUMMARY CARDS ===== -->
+<div class="report-grid">
+
+  <div class="report-card red">
+    <h3>Monthly Sales</h3>
+    <p>₹{{ monthly_sales }}</p>
+  </div>
+
+  <div class="report-card gold">
+    <h3>Orders Completed</h3>
+    <p>{{ orders_completed }}</p>
+  </div>
+
+  <div class="report-card dark">
+    <h3>New Users</h3>
+    <p>{{ new_users }}</p>
+  </div>
+
+</div>
+
+<!-- ===== CHART.JS ===== -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('reportChart').getContext('2d');
+
+  // Gradient colors
+  const redGradient = ctx.createLinearGradient(0, 0, 0, 300);
+  redGradient.addColorStop(0, '#ff4b4b');
+  redGradient.addColorStop(1, '#e50914');
+
+  const goldGradient = ctx.createLinearGradient(0, 0, 0, 300);
+  goldGradient.addColorStop(0, '#f5d76e');
+  goldGradient.addColorStop(1, '#d4af37');
+
+  const darkGradient = ctx.createLinearGradient(0, 0, 0, 300);
+  darkGradient.addColorStop(0, '#555');
+  darkGradient.addColorStop(1, '#222');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Monthly Sales', 'Orders Completed', 'New Users'],
+      datasets: [{
+        data: [
+          {{ monthly_sales }},
+          {{ orders_completed }},
+          {{ new_users }}
+        ],
+        backgroundColor: [
+          redGradient,
+          goldGradient,
+          darkGradient
+        ],
+        borderRadius: 14,
+        barThickness: 55
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 1200,
+        easing: 'easeOutQuart'
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#111',
+          padding: 12,
+          titleColor: '#fff',
+          bodyColor: '#f5f5f5',
+          callbacks: {
+            label: function(context) {
+              if (context.label === 'Monthly Sales') {
+                return ' ₹' + context.parsed.y;
+              }
+              return ' ' + context.parsed.y;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: {
+            color: '#555',
+            font: { weight: '600' }
+          }
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: '#eee',
+            borderDash: [4, 4]
+          },
+          ticks: {
+            color: '#777'
+          }
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+/* ===== PAGE ===== */
+.page-title {
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* ===== CHART CARD ===== */
+.chart-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 25px 30px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  margin-bottom: 35px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chart-header span {
+  font-size: 12px;
+  color: #888;
+}
+
+.chart-wrapper {
+  height: 320px;
+}
+
+/* ===== REPORT GRID ===== */
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+/* ===== REPORT CARDS ===== */
+.report-card {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+  transition: 0.3s;
+}
+
+.report-card:hover {
+  transform: translateY(-6px);
+}
+
+.report-card h3 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.report-card p {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Color accents */
+.report-card.red h3 { color: #e50914; }
+.report-card.gold h3 { color: #d4af37; }
+.report-card.dark h3 { color: #333; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .chart-wrapper {
+    height: 260px;
+  }
+}
+</style>
+
+{% endblock %}

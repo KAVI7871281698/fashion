@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= BANNER GRID ================= -->
+<section class="banner-grid-row">
+  {% for i in banner %}
+    <div class="banner-col">
+      <img src="{{ i.bannerimg1.url }}" alt="Banner Left">
+    </div>
+
+    <div class="banner-col center-video">
+      <video autoplay muted loop playsinline>
+        <source src="{{ i.bannervideo.url }}" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="banner-col">
+      <img src="{{ i.bannerimg2.url }}" alt="Banner Right">
+    </div>
+  {% endfor %}
+</section>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <h1>
+    <span>Film.</span>
+    <span>Frame.</span>
+    <span class="highlight">Fashion.</span>
+  </h1>
+
+  <p>
+    Where cinema culture meets premium streetwear.
+    Discover cinema-inspired apparel for true cinephiles.
+  </p>
+
+  <div class="hero-btns">
+    <a href="{% url 'collection' %}">
+      <button class="shop">Shop Collection →</button>
+    </a>
+    <a href="{% url 'about' %}">
+      <button class="story">Our Story</button>
+    </a>
+  </div>
+</section>
+
+<!-- ================= COUPONS (PRO STYLE) ================= -->
+{% if coupons %}
+<section class="coupon-section">
+  <h2 class="coupon-title">🎁 Exclusive Offers</h2>
+  <p class="coupon-subtitle">Grab them before they expire</p>
+
+  <div class="coupon-container">
+    {% for coupon in coupons %}
+    <div class="coupon-card">
+      <span class="coupon-badge">OFFER</span>
+
+      <h3>{{ coupon.code }}</h3>
+
+      <p class="discount">
+        {% if coupon.discount_type == "flat" %}
+          ₹{{ coupon.discount_value }} OFF
+        {% else %}
+          {{ coupon.discount_value }}% OFF
+        {% endif %}
+      </p>
+
+      <small>Min Order ₹{{ coupon.min_order_amount }}</small>
+
+      <button class="copy-btn" onclick="copyCoupon('{{ coupon.code }}')">
+        Copy Code
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div>
+    <strong>50+</strong>
+    <p>Unique Designs</p>
+  </div>
+  <div>
+    <strong>Premium</strong>
+    <p>Quality Materials</p>
+  </div>
+  <div>
+    <strong>100%</strong>
+    <p>Cinema Inspired</p>
+  </div>
+</section>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+function copyCoupon(code) {
+  navigator.clipboard.writeText(code).then(() => {
+    alert("Coupon copied: " + code);
+  });
+}
+</script>
+
+<!-- ================= STYLES ================= -->
+<style>
+/* ---------- COUPON SECTION ---------- */
+.coupon-section {
+  padding: 80px 8%;
+  background: linear-gradient(180deg, #000, #0a0a0a);
+  text-align: center;
+}
+
+.coupon-title {
+  font-size: 32px;
+  color: #d4af37;
+  margin-bottom: 5px;
+}
+
+.coupon-subtitle {
+  color: #aaa;
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+
+/* GRID */
+.coupon-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+/* CARD */
+.coupon-card {
+  background: #111;
+  border: 1px dashed #d4af37;
+  border-radius: 16px;
+  padding: 25px 20px;
+  position: relative;
+  animation: slideUp 0.8s ease forwards;
+  transition: 0.4s;
+}
+
+/* SLIDE ANIMATION */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* BADGE */
+.coupon-badge {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  background: #e50914;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 11px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+/* TEXT */
+.coupon-card h3 {
+  font-size: 22px;
+  color: #e50914;
+  margin-bottom: 10px;
+}
+
+.discount {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.coupon-card small {
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* BUTTON */
+.copy-btn {
+  margin-top: 18px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #e50914, #b20710);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.copy-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(229, 9, 20, 0.6);
+}
+
+/* HOVER CARD */
+.coupon-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+</style>
+
+{% endblock %}

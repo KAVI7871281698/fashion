@@ -1,0 +1,79 @@
+{% extends "dashboard_base.html" %}
+{% block content %}
+
+<h1>Users</h1>
+
+<div class="table-wrapper">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for u in users %}
+      <tr>
+        <td>{{ u.name }}</td>
+        <td>{{ u.email }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="2" class="empty">No users found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<style>
+.table-wrapper {
+  background: #111;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1A1A1A;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-table thead {
+  background: #E50914;
+}
+
+.admin-table th {
+  color: #ffffff;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 14px;
+}
+
+.admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #333;
+  font-size: 14px;
+}
+
+.admin-table tbody tr:hover {
+  background: #2A2A2A;
+  transition: 0.25s;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+}
+</style>
+
+{% endblock %}

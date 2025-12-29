@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="order-page">
+
+  <h2 class="order-title">My Orders</h2>
+
+  {% for order in shipping_info %}
+  <div class="order-card">
+
+    <!-- ORDER BASIC INFO -->
+    <div class="order-row">
+      <span>Name</span>
+      <strong>{{ order.user.name }}</strong>
+    </div>
+
+    <div class="order-row">
+      <span>Product Name</span>
+      <strong>{{ order.user.name }}</strong>
+    </div>
+
+    <div class="order-row">
+      <span>Order ID</span>
+      <strong>{{ order.id }}</strong>
+    </div>
+
+    <div class="order-row">
+      <span>Order Date</span>
+      <strong>{{ order.created_at|date:"d M Y" }}</strong>
+    </div>
+
+    <div class="order-row">
+      <span>Total Amount</span>
+      <strong>₹{{ order.total_amount }}</strong>
+    </div>
+
+    <!-- PAYMENT STATUS -->
+    <div class="order-row">
+      <span>Payment Status</span>
+
+      {% if order.payment_status == "Paid" %}
+        <span class="badge paid">Paid</span>
+      {% elif order.payment_status == "Failed" %}
+        <span class="badge failed">Failed</span>
+      {% else %}
+        <span class="badge pending">Pending</span>
+      {% endif %}
+    </div>
+
+    <!-- ORDER STATUS -->
+    <div class="order-row">
+      <span>Order Status</span>
+
+      {% if order.status == "Delivered" %}
+        <span class="badge delivered">Delivered</span>
+      {% elif order.status == "Cancelled" %}
+        <span class="badge cancelled">Cancelled</span>
+      {% elif order.status == "Confirmed" %}
+        <span class="badge confirmed">Confirmed</span>
+      {% else %}
+        <span class="badge pending">Pending</span>
+      {% endif %}
+    </div>
+
+    <!-- DELIVERY INFO -->
+    {% if order.delivery_address %}
+    <div class="address-box">
+      <h4>Delivery Address</h4>
+      <p>{{ order.delivery_address }}</p>
+    </div>
+    {% endif %}
+
+    {% if order.delivery_date %}
+    <div class="order-row">
+      <span>Expected Delivery</span>
+      <strong>{{ order.delivery_date|date:"d M Y" }}</strong>
+    </div>
+    {% endif %}
+
+  </div>
+  {% empty %}
+    <p class="empty">No orders found</p>
+  {% endfor %}
+
+</section>
+
+<style>
+.order-page {
+  width: 70%;
+  margin: 60px auto;
+}
+
+.order-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+
+.order-card {
+  background: #111;
+  padding: 30px;
+  border-radius: 18px;
+  margin-bottom: 30px;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.order-row span {
+  color: #aaa;
+}
+
+/* BADGES */
+.badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.paid { background:#0f5132; color:#6ee7b7; }
+.failed { background:#7f1d1d; color:#fecaca; }
+.pending { background:#3f3f46; color:#e5e7eb; }
+.confirmed { background:#1e3a8a; color:#bfdbfe; }
+.delivered { background:#065f46; color:#6ee7b7; }
+.cancelled { background:#7f1d1d; color:#fecaca; }
+
+/* ADDRESS */
+.address-box {
+  background: #1a1a1a;
+  padding: 18px;
+  border-radius: 14px;
+  margin-top: 20px;
+}
+
+.address-box h4 {
+  margin-bottom: 8px;
+}
+
+.address-box p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+}
+
+@media (max-width: 900px) {
+  .order-page {
+    width: 95%;
+  }
+}
+</style>
+
+{% endblock %}

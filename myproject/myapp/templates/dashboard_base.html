@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel | Film Frame Fashion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0F0F0F;
+      color: #F5F5F5;
+    }
+
+    .sidebar {
+      width: 240px;
+      height: 100vh;
+      background: #1A1A1A;
+      position: fixed;
+      padding: 20px;
+    }
+
+    /* 🔹 NEW HEADER */
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .back-btn {
+      font-size: 20px;
+      color: #fff;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: #111;
+    }
+
+    .back-btn:hover {
+      background: #E50914;
+    }
+
+    .admin-logo {
+      width: 120px;
+      margin: 0 auto;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #F5F5F5;
+      text-decoration: none;
+      padding: 12px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+    }
+
+    .sidebar a:hover {
+      background: #E50914;
+    }
+
+    .main {
+      margin-left: 260px;
+      padding: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sidebar">
+
+    <!-- 🔹 LOGO + BACK -->
+    <div class="sidebar-header">
+      <a href="/" class="back-btn">←</a>
+      <img src="{% static 'img/company_logo.png' %}" alt="Film Frame Fashion" class="admin-logo">
+    </div>
+
+    <a href="/dashboard">Dashboard</a>
+    <a href="/order_dashboard">Orders</a>
+    <a href="/product_dashboard">Products</a>
+    <a href="/categorizes_dashboard">Categories</a>
+    <a href="/user_dashboard">Users</a>
+    <a href="/dashboard_report">Reports</a>
+
+  </div>
+
+  <div class="main">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>
