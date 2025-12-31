@@ -1,4 +1,5 @@
 from .models import add_to_cart, Register
+from django.core.exceptions import ValidationError
 
 def cart_count(request):
     email = request.session.get('email')
@@ -25,3 +26,8 @@ def logged_in_user(request):
             pass
 
     return {'logged_user': user}
+
+# def validate_file_size_10mb(file):
+#     max_size = 10 * 1024 * 1024  # 10 MB
+#     if file.size > max_size:
+#         raise ValidationError("File size must be under 10 MB")
