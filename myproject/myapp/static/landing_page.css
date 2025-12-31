@@ -1,6 +1,6 @@
 /* ================= THEME COLORS ================= */
 :root {
-    --bg-black: lab(1.43% 0.26 0.09);
+    --bg-black: lab(3.32% 0 0);
     --gold: #d4af37;        /* Golden */
     --fire-red: #e50914;    /* Fire Red */
     --dark-gray: #111111;
@@ -39,14 +39,27 @@ body {
 
 /* Logo */
 .logo img {
-    width: 50px;
-    height: 50px;
+    width: 70px;              /* increased size */
+    height: 70px;
     border-radius: 50%;
     background: black;
     padding: 6px;
-    object-fit: cover;
-    box-shadow: 0 0 12px var(--fire-red);
+    object-fit: contain;      /* prevents logo cropping */
+    transition: all 0.3s ease;
+    border: 2px solid #FFD700;   /* clean gold ring */
+    box-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 22px rgba(255, 215, 0, 0.6);
 }
+
+.logo img:hover {
+    box-shadow: 
+        0 0 14px rgba(255, 215, 0, 1),
+        0 0 30px rgba(255, 215, 0, 0.8);
+    transform: scale(1.05);
+}
+
+
 
 /* Navbar */
 .navbar {
@@ -152,15 +165,26 @@ body {
     padding: 40px 20px;
 }
 
-.hero h1 {
+/* All hero text – professional shop style */
+.hero h1,
+.hero span {
     font-size: 42px;
     font-weight: 700;
-    color: var(--gold);
+    line-height: 1.2;
+
+    background: linear-gradient(
+        90deg,
+        #b89b2e,                                   /* dark antique gold */
+        #ffd900bc,                                /* rich gold */
+        rgb(252, 3, 3)      /* deep premium red */
+    );
+
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.hero .highlight {
-    color: var(--fire-red);
-}
 
 .hero p {
     width: 60%;
@@ -281,5 +305,30 @@ body {
 
     .hero p {
         width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        width: 50px;
+        height: 50px;
+        padding: 4px;
+        border-width: 1.5px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .logo img {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .logo img {
+        width: 80px;
+        height: 80px;
+        padding: 8px;
     }
 }

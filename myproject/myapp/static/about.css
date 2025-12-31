@@ -39,10 +39,8 @@ body {
     padding: 40px 5%;
 }
 
-.about-logo {
-    width: 120px;
-    margin-bottom: 15px;
-}
+
+
 
 .about-hero h1 {
     font-size: 46px;
@@ -72,12 +70,6 @@ body {
     text-align: center;
     font-size: 15px;
     color: var(--soft-gray);
-}
-
-.our-story h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: var(--gold);
 }
 
 .our-story p {

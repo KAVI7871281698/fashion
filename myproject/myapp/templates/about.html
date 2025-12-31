@@ -5,6 +5,48 @@
 
 <link rel="stylesheet" href="{% static 'about.css' %}">
 
+<style>
+.about-logo {
+    width: 120px;
+    max-width: 100%;
+    margin-bottom: 15px;
+
+    border-radius: 50%;
+    padding: 8px;
+    background: #000;
+    border: 2px solid #FFD700;   /* clean gold ring */
+    box-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 22px rgba(255, 215, 0, 0.6);
+
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+.about-logo:hover {
+    box-shadow: 
+        0 0 14px rgba(255, 215, 0, 1),
+        0 0 30px rgba(255, 215, 0, 0.8);
+    transform: scale(1.05);
+}
+
+.about-hero h1 {
+    font-size: 46px;
+    margin-bottom: 10px;
+    color: var(--gold);
+    background: linear-gradient(
+          90deg,
+          #b89b2e,                                  /* dark antique gold */
+          #ffd900bc,                               /* rich gold */
+          rgb(252, 3, 3)      /* deep premium red */
+    /* deep premium red */
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+</style>
+
 <!-- Back Navigation -->
 <div class="back-link">
     <a href="/">← Back to Home</a>

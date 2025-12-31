@@ -37,15 +37,6 @@ body {
 }
 
 /* ================= PAGE HEADER ================= */
-.page-header {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.page-header h1 {
-    font-size: 26px;
-    color: var(--gold);
-}
 
 .page-header p {
     color: var(--soft-gray);

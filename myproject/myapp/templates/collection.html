@@ -3,6 +3,23 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'collection.css' %}">
+<style>
+    .page-title h1 {
+    font-size: 28px;
+    color: var(--gold);
+    background: linear-gradient(
+          90deg,
+          #b89b2e,                                  /* dark antique gold */
+          #ffd900bc,                               /* rich gold */
+          rgb(252, 3, 3)      /* deep premium red */
+    /* deep premium red */
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+</style>
 
 <div class="back-link">
     <a href="#">← Back to Home</a>
