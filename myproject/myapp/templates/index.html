@@ -7,17 +7,17 @@
 <section class="banner-grid-row">
   {% for i in banner %}
     <div class="banner-col">
-      <img src="{% static 'img/company_logo.png' %}" alt="Banner Left">
+      <img src="{{ i.bannerimg1.url }}" alt="Banner Left">
     </div>
 
     <div class="banner-col center-video">
       <video autoplay muted loop playsinline>
-        <source src="{% static 'video/banner_video.mp4' %}" type="video/mp4">
+        <source src="{{ i.bannervideo.url }}" type="video/mp4">
       </video>
     </div>
 
     <div class="banner-col">
-      <img src="{% static 'img/company_logo.png' %}" alt="Banner Right">
+      <img src="{{ i.bannerimg2.url }}" alt="Banner Right">
     </div>
   {% endfor %}
 </section>
