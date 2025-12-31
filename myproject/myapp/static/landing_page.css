@@ -1,10 +1,11 @@
 /* ================= THEME COLORS ================= */
 :root {
-    --bg-black: lab(3.32% 0 0);
+    --bg-white: #ffffff;
     --gold: #d4af37;        /* Golden */
     --fire-red: #e50914;    /* Fire Red */
-    --dark-gray: #111111;
-    --light-gray: #cccccc;
+    --dark-text: #111111;
+    --gray-text: #555555;
+    --border-light: #e5e5e5;
 }
 
 /* ================= GLOBAL ================= */
@@ -16,8 +17,8 @@
 }
 
 body {
-    background: var(--bg-black);
-    color: var(--gold);
+    background: var(--bg-white);
+    color: var(--dark-text);
     padding-top: 90px;
 }
 
@@ -27,8 +28,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 5%;
-    background: var(--dark-gray);
-    border-bottom: 1px solid #222;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-light);
     width: 100%;
     height: 70px;
     position: fixed;
@@ -39,29 +40,27 @@ body {
 
 /* Logo */
 .logo img {
-    width: 70px;              /* increased size */
+    width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: black;
+    background: #ffffff;
     padding: 6px;
-    object-fit: contain;      /* prevents logo cropping */
+    object-fit: contain;
     transition: all 0.3s ease;
-    border: 2px solid #FFD700;   /* clean gold ring */
-    box-shadow: 
-        0 0 10px rgba(255, 215, 0, 0.8),
-        0 0 22px rgba(255, 215, 0, 0.6);
+    border: 2px solid var(--gold);
+    box-shadow:
+        0 0 8px rgba(212, 175, 55, 0.5),
+        0 0 18px rgba(212, 175, 55, 0.3);
 }
 
 .logo img:hover {
-    box-shadow: 
-        0 0 14px rgba(255, 215, 0, 1),
-        0 0 30px rgba(255, 215, 0, 0.8);
     transform: scale(1.05);
+    box-shadow:
+        0 0 14px rgba(212, 175, 55, 0.8),
+        0 0 26px rgba(212, 175, 55, 0.6);
 }
 
-
-
-/* Navbar */
+/* ================= NAVBAR ================= */
 .navbar {
     display: flex;
     gap: 35px;
@@ -69,8 +68,9 @@ body {
 
 .navbar a {
     text-decoration: none;
-    color: var(--gold);
+    color: var(--dark-text);
     font-size: 14px;
+    font-weight: 500;
     transition: 0.3s;
 }
 
@@ -87,14 +87,14 @@ body {
 
 .auth input {
     padding: 6px 10px;
-    border: 1px solid #333;
-    background: #000;
-    color: var(--gold);
+    border: 1px solid var(--border-light);
+    background: #ffffff;
+    color: var(--dark-text);
     border-radius: 6px;
 }
 
 .auth input::placeholder {
-    color: #777;
+    color: #999;
 }
 
 .login-btn {
@@ -108,7 +108,7 @@ body {
 
 .register {
     background: var(--fire-red);
-    color: #fff;
+    color: #ffffff;
     border: none;
     padding: 6px 14px;
     border-radius: 6px;
@@ -118,7 +118,7 @@ body {
 /* Cart */
 .cart {
     font-size: 22px;
-    color: var(--gold);
+    color: var(--dark-text);
     cursor: pointer;
 }
 
@@ -130,7 +130,7 @@ body {
 .menu-icon {
     display: none;
     font-size: 24px;
-    color: var(--gold);
+    color: var(--dark-text);
     cursor: pointer;
 }
 
@@ -149,7 +149,7 @@ body {
     height: 100%;
     overflow: hidden;
     border-radius: 16px;
-    box-shadow: 0 0 20px rgba(229,9,20,0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .banner-col img,
@@ -165,31 +165,25 @@ body {
     padding: 40px 20px;
 }
 
-/* All hero text – professional shop style */
 .hero h1,
 .hero span {
     font-size: 42px;
     font-weight: 700;
     line-height: 1.2;
-
     background: linear-gradient(
         90deg,
-        #b89b2e,                                   /* dark antique gold */
-        #ffd900bc,                                /* rich gold */
-        rgb(252, 3, 3)      /* deep premium red */
+        #b89b2e,
+        #ffd700,
+        var(--fire-red)
     );
-
-
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
-
 
 .hero p {
     width: 60%;
     margin: 15px auto;
-    color: #bbb;
+    color: var(--gray-text);
 }
 
 /* Buttons */
@@ -206,13 +200,13 @@ body {
 
 .hero-btns button:hover {
     background: var(--fire-red);
-    color: #fff;
+    color: #ffffff;
     border-color: var(--fire-red);
 }
 
 .shop {
     background: var(--fire-red);
-    color: #fff;
+    color: #ffffff;
     border: none;
 }
 
@@ -231,15 +225,15 @@ body {
 }
 
 .stats p {
-    color: var(--gold);
+    color: var(--dark-text);
 }
 
 /* ================= FOOTER ================= */
 .footer {
-    background: #050505;
+    background: #f8f8f8;
     padding: 40px 5%;
-    color: var(--gold);
-    border-top: 1px solid #222;
+    color: var(--dark-text);
+    border-top: 1px solid var(--border-light);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -251,9 +245,9 @@ body {
         position: absolute;
         top: 70px;
         right: 5%;
-        background: #000;
+        background: #ffffff;
         padding: 15px;
-        border: 1px solid #222;
+        border: 1px solid var(--border-light);
     }
 
     .navbar.active {
@@ -290,7 +284,6 @@ body {
 }
 
 @media (max-width: 600px) {
-
     body {
         padding-top: 80px;
     }

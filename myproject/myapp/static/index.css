@@ -1,3 +1,13 @@
+/* ================= THEME COLORS ================= */
+:root {
+    --bg-black: lab(3.32% 0 0);
+    --gold: #d4af37;        /* Golden */
+    --fire-red: #e50914;    /* Fire Red */
+    --dark-gray: #111111;
+    --light-gray: #cccccc;
+}
+
+/* ================= GLOBAL ================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,50 +16,66 @@
 }
 
 body {
-    background: #fff;
-    color: #333;
-    padding-top: 80px;
+    background: var(--bg-black);
+    color: var(--gold);
+    padding-top: 90px;
 }
 
 /* ================= HEADER ================= */
 .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    padding: 0 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
-    border-bottom: 1px solid #eee;
+    padding: 10px 5%;
+    background: var(--dark-gray);
+    border-bottom: 1px solid #222;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 999;
 }
 
-/* LOGO */
+/* Logo */
 .logo img {
-    width: 50px;
-    height: 50px;
+    width: 70px;              /* increased size */
+    height: 70px;
     border-radius: 50%;
-    background: #000;
+    background: black;
     padding: 6px;
+    object-fit: contain;      /* prevents logo cropping */
+    transition: all 0.3s ease;
+    border: 2px solid #FFD700;   /* clean gold ring */
+    box-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 22px rgba(255, 215, 0, 0.6);
 }
 
-/* ================= NAVBAR ================= */
+.logo img:hover {
+    box-shadow: 
+        0 0 14px rgba(255, 215, 0, 1),
+        0 0 30px rgba(255, 215, 0, 0.8);
+    transform: scale(1.05);
+}
+
+
+
+/* Navbar */
 .navbar {
     display: flex;
-    gap: 30px;
+    gap: 35px;
 }
 
 .navbar a {
     text-decoration: none;
+    color: var(--gold);
     font-size: 14px;
-    color: #333;
     transition: 0.3s;
 }
 
 .navbar a:hover {
-    color: red;
+    color: var(--fire-red);
 }
 
 /* ================= AUTH ================= */
@@ -60,46 +86,77 @@ body {
 }
 
 .auth input {
-    padding: 6px;
-    border: 1px solid #ddd;
+    padding: 6px 10px;
+    border: 1px solid #333;
+    background: #000;
+    color: var(--gold);
+    border-radius: 6px;
 }
 
-.auth button {
-    padding: 6px 14px;
-    border: none;
+.auth input::placeholder {
+    color: #777;
+}
+
+.login-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 12px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
 }
 
 .register {
-    background: red;
+    background: var(--fire-red);
     color: #fff;
-}
-
-.cart {
-    font-size: 18px;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
+/* Cart */
+.cart {
+    font-size: 22px;
+    color: var(--gold);
+    cursor: pointer;
+}
+
+.cart:hover {
+    color: var(--fire-red);
+}
+
+/* Menu icon */
 .menu-icon {
     display: none;
     font-size: 24px;
+    color: var(--gold);
     cursor: pointer;
 }
 
-/* ================= BANNER ================= */
-.banner-video {
-    width: 100%;
+/* ================= BANNER GRID ================= */
+.banner-grid-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    padding: 0 35px;
     height: 350px;
-    padding: 0 5%;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-.banner-video video {
+.banner-col {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(229,9,20,0.3);
+}
+
+.banner-col img,
+.center-video video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
 }
 
 /* ================= HERO ================= */
@@ -108,32 +165,53 @@ body {
     padding: 40px 20px;
 }
 
-.hero h1 {
+/* All hero text – professional shop style */
+.hero h1,
+.hero span {
     font-size: 42px;
     font-weight: 700;
+    line-height: 1.2;
+
+    background: linear-gradient(
+        90deg,
+        #b89b2e,                                   /* dark antique gold */
+        #ffd900bc,                                /* rich gold */
+        rgb(252, 3, 3)      /* deep premium red */
+    );
+
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.hero .highlight {
-    color: red;
-}
 
 .hero p {
     width: 60%;
     margin: 15px auto;
-    color: #555;
+    color: #bbb;
 }
 
-/* BUTTONS */
+/* Buttons */
 .hero-btns button {
     padding: 10px 22px;
     margin: 10px;
     border-radius: 25px;
-    border: 1px solid #ccc;
     cursor: pointer;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    transition: 0.3s;
+}
+
+.hero-btns button:hover {
+    background: var(--fire-red);
+    color: #fff;
+    border-color: var(--fire-red);
 }
 
 .shop {
-    background: red;
+    background: var(--fire-red);
     color: #fff;
     border: none;
 }
@@ -142,82 +220,115 @@ body {
 .stats {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 50px;
     padding: 40px 0;
     text-align: center;
 }
 
 .stats strong {
-    font-size: 24px;
-    color: red;
+    font-size: 26px;
+    color: var(--fire-red);
+}
+
+.stats p {
+    color: var(--gold);
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    background: #050505;
+    padding: 40px 5%;
+    color: var(--gold);
+    border-top: 1px solid #222;
 }
 
 /* ================= RESPONSIVE ================= */
-
-/* TABLET & MOBILE */
 @media (max-width: 991px) {
 
-    /* Mobile menu */
     .navbar {
+        display: none;
+        flex-direction: column;
         position: absolute;
         top: 70px;
         right: 5%;
-        flex-direction: column;
-        background: #fff;
+        background: #000;
         padding: 15px;
-        border: 1px solid #ddd;
-        display: none;
-        gap: 15px;
+        border: 1px solid #222;
     }
 
     .navbar.active {
         display: flex;
     }
 
-    /* ❌ hide ONLY search input */
-    .auth input {
+    .auth input,
+    .login-btn,
+    .register {
         display: none;
-    }
-
-    /* ✅ keep buttons visible */
-    .auth button {
-        display: inline-block;
     }
 
     .menu-icon {
         display: block;
     }
 
-    .hero p {
-        width: 80%;
+    .banner-grid-row {
+        grid-template-columns: 1fr;
+        height: auto;
     }
-}
 
-/* SMALL MOBILE */
-@media (max-width: 600px) {
-    .hero h1 {
-        font-size: 30px;
+    .banner-col {
+        height: 220px;
     }
 
     .hero p {
-        width: 95%;
+        width: 85%;
     }
 
     .stats {
         flex-direction: column;
-        gap: 25px;
-    }
-
-    .banner-video {
-        height: 200px;
-    }
-
-    .auth button {
-        padding: 5px 10px;
-        font-size: 13px;
+        gap: 20px;
     }
 }
 
+@media (max-width: 600px) {
 
+    body {
+        padding-top: 80px;
+    }
 
+    .hero h1 {
+        font-size: 30px;
+    }
 
+    .banner-col {
+        height: 180px;
+    }
+
+    .hero p {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        width: 50px;
+        height: 50px;
+        padding: 4px;
+        border-width: 1.5px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .logo img {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .logo img {
+        width: 80px;
+        height: 80px;
+        padding: 8px;
+    }
+}
