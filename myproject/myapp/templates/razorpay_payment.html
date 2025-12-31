@@ -9,115 +9,161 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at top, #111, #000);
-      font-family: "Segoe UI", sans-serif;
-      color: #fff;
-    }
+/* ================= THEME ================= */
+:root {
+  --white: #ffffff;
+  --sky-soft: #f2f9ff;
+  --sky-light: #e6f3ff;
 
-    .payment-card {
-      width: 100%;
-      max-width: 420px;
-      background: #111;
-      padding: 32px;
-      border-radius: 20px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-      text-align: center;
-      animation: fadeUp 0.7s ease;
-    }
+  --fire-red: #e50914;
+  --success-green: #22c55e;
+  --gold: #d4af37;
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+  --dark-text: #111111;
+  --soft-gray: #666666;
 
-    .logo {
-      margin-bottom: 14px;
-    }
+  --border-light: rgba(0,0,0,0.12);
+  --card-shadow: 0 18px 40px rgba(0,0,0,0.1);
+}
 
-    .logo img {
-      width: 140px;
-    }
+/* ================= BODY ================= */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    var(--white) 0%,
+    var(--sky-soft) 55%,
+    var(--sky-light) 100%
+  );
+  font-family: "Segoe UI", sans-serif;
+  color: var(--dark-text);
+}
 
-    .title {
-      font-size: 20px;
-      margin-bottom: 6px;
-      letter-spacing: 1px;
-    }
+/* ================= PAYMENT CARD ================= */
+.payment-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--white);
+  padding: 32px;
+  border-radius: 22px;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  border: 1px solid var(--border-light);
+  animation: fadeUp 0.6s ease;
+}
 
-    .subtitle {
-      font-size: 13px;
-      color: #aaa;
-      margin-bottom: 26px;
-    }
+/* ================= ANIMATION ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    .amount-box {
-      background: #000;
-      border: 1px dashed #d4af37;
-      padding: 18px;
-      border-radius: 14px;
-      margin-bottom: 26px;
-    }
+/* ================= LOGO ================= */
+.logo {
+  margin-bottom: 14px;
+}
 
-    .amount-box span {
-      font-size: 13px;
-      color: #aaa;
-    }
+.logo img {
+  width: 140px;
+}
 
-    .amount {
-      font-size: 32px;
-      font-weight: bold;
-      color: #d4af37;
-      margin-top: 4px;
-    }
+/* ================= TEXT ================= */
+.title {
+  font-size: 22px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--fire-red);
+}
 
-    .pay-btn {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      color: #fff;
-      background: linear-gradient(135deg, #e50914, #b20710);
-      box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
-      transition: 0.3s;
-    }
+.subtitle {
+  font-size: 13px;
+  color: var(--soft-gray);
+  margin-bottom: 26px;
+}
 
-    .pay-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(229, 9, 20, 0.8);
-    }
+/* ================= AMOUNT BOX ================= */
+.amount-box {
+  background: linear-gradient(
+    135deg,
+    var(--sky-soft),
+    var(--white)
+  );
+  border: 1px dashed var(--gold);
+  padding: 18px;
+  border-radius: 16px;
+  margin-bottom: 26px;
+}
 
-    .secure {
-      margin-top: 14px;
-      font-size: 12px;
-      color: #aaa;
-    }
+.amount-box span {
+  font-size: 13px;
+  color: var(--soft-gray);
+}
 
-    .secure span {
-      color: #22c55e;
-      font-weight: 600;
-    }
+.amount {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--fire-red);
+  margin-top: 4px;
+}
 
-    @media (max-width: 480px) {
-      .payment-card {
-        margin: 0 14px;
-        padding: 26px;
-      }
-    }
+/* ================= PAY BUTTON ================= */
+.pay-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--fire-red),
+    #b20710
+  );
+  box-shadow: 0 0 18px rgba(229, 9, 20, 0.45);
+  transition: all 0.3s ease;
+}
+
+.pay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(229, 9, 20, 0.65);
+}
+
+/* ================= SECURE TEXT ================= */
+.secure {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--soft-gray);
+}
+
+.secure span {
+  color: var(--success-green);
+  font-weight: 600;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  .payment-card {
+    margin: 0 14px;
+    padding: 26px;
+  }
+
+  .amount {
+    font-size: 28px;
+  }
+}
+
   </style>
 </head>
 

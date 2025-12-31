@@ -64,26 +64,63 @@
 
 <!-- ================= STYLES ================= -->
 <style>
+/* ================= THEME ================= */
+:root {
+  --white: #ffffff;
+  --sky-soft: #f2f9ff;
+  --sky-light: #e6f3ff;
+
+  --fire-red: #e50914;
+  --gold: #d4af37;
+
+  --dark-text: #111111;
+  --soft-gray: #666666;
+
+  --border-light: rgba(0,0,0,0.12);
+  --card-shadow: 0 14px 28px rgba(0,0,0,0.08);
+}
+
+/* ================= SIGNATURE SECTION ================= */
 .signature-section {
   padding: 60px 8% 20px;
-  background: #000;
-  color: #d4af37;
+  background: linear-gradient(
+    180deg,
+    var(--white) 0%,
+    var(--sky-soft) 60%,
+    var(--sky-light) 100%
+  );
   text-align: center;
 }
 
 .title {
   font-size: 42px;
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    #b89b2e,
+    #ffd700,
+    var(--fire-red)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
-  color: #aaa;
+  color: var(--soft-gray);
+  margin-top: 6px;
 }
 
+/* ================= PRODUCT SECTION ================= */
 .product-section {
   padding: 40px 8% 80px;
-  background: #000;
+  background: linear-gradient(
+    180deg,
+    var(--sky-soft),
+    var(--white)
+  );
 }
 
+/* ================= TOOLBAR ================= */
 .prod-toolbar {
   margin-bottom: 30px;
   text-align: center;
@@ -91,38 +128,61 @@
 
 .prod-toolbar input {
   width: 260px;
-  padding: 10px;
+  padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #111;
-  color: #d4af37;
+  border: 1px solid var(--border-light);
+  background: var(--white);
+  color: var(--dark-text);
+  font-size: 14px;
 }
 
+.prod-toolbar input::placeholder {
+  color: #999;
+}
+
+.prod-toolbar input:focus {
+  outline: none;
+  border-color: var(--fire-red);
+  box-shadow: 0 0 8px rgba(229,9,20,0.35);
+}
+
+/* ================= GRID ================= */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
 }
 
+/* ================= PRODUCT CARD ================= */
 .product-card {
-  background: #111;
+  background: var(--white);
   border-radius: 16px;
   padding: 20px;
-  transition: 0.4s;
   position: relative;
+  transition: 0.35s ease;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--card-shadow);
 }
 
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(229,9,20,0.18);
+}
+
+/* ================= BADGE ================= */
 .badge {
   position: absolute;
   top: 15px;
   left: 15px;
-  background: #e50914;
-  color: #fff;
+  background: rgba(229,9,20,0.1);
+  color: var(--fire-red);
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 20px;
+  border: 1px solid rgba(229,9,20,0.35);
 }
 
+/* ================= IMAGE ================= */
 .product-card img {
   width: 100%;
   height: 280px;
@@ -131,64 +191,73 @@
   margin-bottom: 15px;
 }
 
+/* ================= TEXT ================= */
 .product-card h4 {
-  color: #e50914;
+  color: var(--fire-red);
   margin-bottom: 6px;
+  font-size: 16px;
 }
 
 .desc {
   font-size: 14px;
-  color: #bbb;
+  color: var(--soft-gray);
   margin-bottom: 10px;
 }
 
 .price {
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 12px;
+  color: var(--dark-text);
 }
 
+/* ================= BUTTONS ================= */
 .btn-wrap {
   display: flex;
   gap: 10px;
 }
 
-.cart-btn, .details-btn {
+.cart-btn,
+.details-btn {
   flex: 1;
   text-align: center;
   padding: 10px;
   border-radius: 8px;
   text-decoration: none;
   font-size: 14px;
+  cursor: pointer;
 }
 
+/* Add to Cart */
 .cart-btn {
-  background: #e50914;
-  color: #fff;
+  background: var(--fire-red);
+  color: #ffffff;
+  border: none;
 }
 
 .cart-btn:hover {
   background: #b20710;
 }
 
+/* Details */
 .details-btn {
-  border: 1px solid #e50914;
-  color: #e50914;
+  background: transparent;
+  border: 1px solid var(--fire-red);
+  color: var(--fire-red);
 }
 
 .details-btn:hover {
-  background: #e50914;
-  color: #fff;
+  background: var(--fire-red);
+  color: #ffffff;
 }
 
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-}
-
+/* ================= EMPTY STATE ================= */
 .empty {
-  color: #999;
+  color: var(--soft-gray);
   text-align: center;
+  font-size: 16px;
+  padding: 40px 0;
 }
+
 </style>
 
 {% endblock %}

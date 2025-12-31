@@ -87,76 +87,153 @@
 </section>
 
 <style>
+/* ================= THEME ================= */
+:root {
+  --white: #ffffff;
+  --sky-soft: #f2f9ff;
+  --sky-light: #e6f3ff;
+
+  --fire-red: #e50914;
+  --gold: #d4af37;
+
+  --dark-text: #111111;
+  --soft-gray: #666666;
+
+  --border-light: rgba(0, 0, 0, 0.12);
+  --card-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= ORDER PAGE ================= */
 .order-page {
   width: 70%;
   margin: 60px auto;
+  background: linear-gradient(
+    180deg,
+    var(--white) 0%,
+    var(--sky-soft) 60%,
+    var(--sky-light) 100%
+  );
+  padding: 30px;
+  border-radius: 24px;
 }
 
+/* ================= TITLE ================= */
 .order-title {
   text-align: center;
   margin-bottom: 30px;
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--fire-red);
 }
 
+/* ================= ORDER CARD ================= */
 .order-card {
-  background: #111;
+  background: var(--white);
   padding: 30px;
   border-radius: 18px;
   margin-bottom: 30px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--card-shadow);
 }
 
+/* ================= ORDER ROW ================= */
 .order-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
   font-size: 15px;
+  color: var(--dark-text);
 }
 
 .order-row span {
-  color: #aaa;
+  color: var(--soft-gray);
 }
 
-/* BADGES */
+/* ================= STATUS BADGES ================= */
 .badge {
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
 }
 
-.paid { background:#0f5132; color:#6ee7b7; }
-.failed { background:#7f1d1d; color:#fecaca; }
-.pending { background:#3f3f46; color:#e5e7eb; }
-.confirmed { background:#1e3a8a; color:#bfdbfe; }
-.delivered { background:#065f46; color:#6ee7b7; }
-.cancelled { background:#7f1d1d; color:#fecaca; }
+/* Badge colors (light theme friendly) */
+.paid {
+  background: rgba(16, 185, 129, 0.15);
+  color: #065f46;
+}
 
-/* ADDRESS */
+.failed {
+  background: rgba(239, 68, 68, 0.15);
+  color: #7f1d1d;
+}
+
+.pending {
+  background: rgba(107, 114, 128, 0.15);
+  color: #374151;
+}
+
+.confirmed {
+  background: rgba(37, 99, 235, 0.15);
+  color: #1e3a8a;
+}
+
+.delivered {
+  background: rgba(5, 150, 105, 0.15);
+  color: #065f46;
+}
+
+.cancelled {
+  background: rgba(239, 68, 68, 0.15);
+  color: #7f1d1d;
+}
+
+/* ================= ADDRESS ================= */
 .address-box {
-  background: #1a1a1a;
+  background: linear-gradient(
+    135deg,
+    var(--sky-soft),
+    var(--white)
+  );
   padding: 18px;
   border-radius: 14px;
   margin-top: 20px;
+  border: 1px solid var(--border-light);
 }
 
 .address-box h4 {
   margin-bottom: 8px;
+  color: var(--fire-red);
+  font-size: 15px;
 }
 
 .address-box p {
-  color: #ccc;
+  color: var(--soft-gray);
   line-height: 1.6;
+  font-size: 14px;
 }
 
+/* ================= EMPTY STATE ================= */
 .empty {
   text-align: center;
-  color: #999;
+  color: var(--soft-gray);
+  font-size: 16px;
+  padding: 40px 0;
 }
 
+/* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
   .order-page {
     width: 95%;
+    padding: 20px;
+  }
+
+  .order-card {
+    padding: 22px;
   }
 }
+
 </style>
 
 {% endblock %}

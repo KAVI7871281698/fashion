@@ -9,74 +9,125 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #f7f7f7;
-        }
+/* ================= THEME ================= */
+:root {
+  --white: #ffffff;
+  --sky-soft: #f2f9ff;
+  --sky-light: #e6f3ff;
 
-        .success-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+  --fire-red: #e50914;
+  --success-green: #28a745;
 
-        .success-card {
-            background: #fff;
-            padding: 50px 40px;
-            border-radius: 14px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            max-width: 420px;
-            width: 100%;
-        }
+  --dark-text: #111111;
+  --soft-gray: #666666;
 
-        .success-icon {
-            font-size: 60px;
-            color: #28a745;
-            margin-bottom: 15px;
-        }
+  --border-light: rgba(0, 0, 0, 0.12);
+  --card-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+}
 
-        .success-card h1 {
-            font-size: 26px;
-            margin-bottom: 10px;
-        }
+/* ================= BODY ================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(
+    180deg,
+    var(--white) 0%,
+    var(--sky-soft) 60%,
+    var(--sky-light) 100%
+  );
+}
 
-        .success-card p {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
+/* ================= CONTAINER ================= */
+.success-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-        .success-actions a {
-            display: inline-block;
-            padding: 12px 26px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            margin: 0 6px;
-        }
+/* ================= CARD ================= */
+.success-card {
+  background: var(--white);
+  padding: 50px 40px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  max-width: 420px;
+  width: 100%;
+  border: 1px solid var(--border-light);
+}
 
-        .btn-home {
-            background: #000;
-            color: #fff;
-        }
+/* ================= ICON ================= */
+.success-icon {
+  font-size: 64px;
+  color: var(--success-green);
+  margin-bottom: 15px;
+}
 
-        .btn-cart {
-            border: 1px solid #ccc;
-            color: #333;
-        }
+/* ================= TEXT ================= */
+.success-card h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: var(--dark-text);
+}
 
-        .btn-home:hover {
-            background: #333;
-        }
+.success-card p {
+  color: var(--soft-gray);
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
 
-        .btn-cart:hover {
-            background: #f2f2f2;
-        }
-    </style>
+/* ================= ACTION BUTTONS ================= */
+.success-actions a {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 6px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Home Button */
+.btn-home {
+  background: var(--fire-red);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-home:hover {
+  background: #b20710;
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.4);
+}
+
+/* Cart Button */
+.btn-cart {
+  border: 1px solid var(--border-light);
+  color: var(--dark-text);
+  background: transparent;
+}
+
+.btn-cart:hover {
+  background: var(--sky-soft);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  .success-card {
+    padding: 40px 25px;
+  }
+
+  .success-actions a {
+    display: block;
+    margin: 8px 0;
+  }
+}
+
+</style>
 </head>
 
 <body>
