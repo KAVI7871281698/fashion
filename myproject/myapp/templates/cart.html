@@ -8,7 +8,7 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <style>
+<style>
 /* ================= THEME ================= */
 :root {
     --white: #ffffff;
@@ -191,31 +191,115 @@ h2 {
 }
 
 /* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .container {
+        width: 94%;
+    }
+
+    .cart-card {
+        grid-template-columns: 100px 1fr auto;
+        gap: 16px;
+    }
+
+    .details h4 {
+        font-size: 18px;
+    }
+
+    .summary-box h3 {
+        font-size: 24px;
+    }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
+    h2 {
+        font-size: 24px;
+    }
+
     .cart-card {
         grid-template-columns: 90px 1fr;
         grid-template-rows: auto auto auto;
         text-align: center;
-    }
-
-    .qty-box,
-    .remove-btn {
-        justify-self: center;
-        margin-top: 10px;
+        padding: 16px;
     }
 
     .cart-card img {
         width: 90px;
         height: 90px;
         margin: auto;
+        object-fit: cover;
+    }
+
+    .details h4 {
+        font-size: 17px;
+    }
+
+    .details p {
+        font-size: 14px;
+    }
+
+    .qty-box {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .remove-btn {
+        margin-top: 10px;
+        justify-self: center;
     }
 
     .summary-box {
         text-align: center;
+        padding: 22px;
     }
 }
 
-    </style>
+/* Small Mobile */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 22px;
+    }
+
+    .cart-card {
+        padding: 14px;
+        gap: 14px;
+    }
+
+    .cart-card img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .qty-btn {
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+
+    .qty-number {
+        font-size: 16px;
+    }
+
+    .remove-btn {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .summary-box h3 {
+        font-size: 22px;
+    }
+
+    .order-btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px;
+    }
+}
+
+
+</style>
+
 </head>
 
 <body>
