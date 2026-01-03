@@ -92,7 +92,6 @@ h2 {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 6px;
-    color: var(--dark-text);
 }
 
 .details p {
@@ -146,11 +145,7 @@ h2 {
 
 /* ================= SUMMARY ================= */
 .summary-box {
-    background: linear-gradient(
-        135deg,
-        var(--sky-soft),
-        var(--white)
-    );
+    background: linear-gradient(135deg, var(--sky-soft), var(--white));
     padding: 25px;
     border-radius: 14px;
     border: 1px solid var(--border-light);
@@ -206,10 +201,6 @@ h2 {
     .details h4 {
         font-size: 18px;
     }
-
-    .summary-box h3 {
-        font-size: 24px;
-    }
 }
 
 /* Mobile */
@@ -229,15 +220,6 @@ h2 {
         width: 90px;
         height: 90px;
         margin: auto;
-        object-fit: cover;
-    }
-
-    .details h4 {
-        font-size: 17px;
-    }
-
-    .details p {
-        font-size: 14px;
     }
 
     .qty-box {
@@ -246,13 +228,12 @@ h2 {
     }
 
     .remove-btn {
-        margin-top: 10px;
         justify-self: center;
+        margin-top: 10px;
     }
 
     .summary-box {
         text-align: center;
-        padding: 22px;
     }
 }
 
@@ -260,11 +241,6 @@ h2 {
 @media (max-width: 480px) {
     h2 {
         font-size: 22px;
-    }
-
-    .cart-card {
-        padding: 14px;
-        gap: 14px;
     }
 
     .cart-card img {
@@ -277,29 +253,12 @@ h2 {
         font-size: 16px;
     }
 
-    .qty-number {
-        font-size: 16px;
-    }
-
-    .remove-btn {
-        font-size: 13px;
-        padding: 6px 12px;
-    }
-
-    .summary-box h3 {
-        font-size: 22px;
-    }
-
     .order-btn {
         width: 100%;
         text-align: center;
-        padding: 14px;
     }
 }
-
-
 </style>
-
 </head>
 
 <body>
@@ -334,12 +293,8 @@ h2 {
 
         <div class="summary-box">
             <h3>Grand Total: ₹{{ total_amount }}</h3>
-
-            <a href="{% url 'order_now_page' %}" class="order-btn">
-                🧾 Order Now
-            </a>
+            <a href="{% url 'order_now_page' %}" class="order-btn">🧾 Order Now</a>
         </div>
-
     {% else %}
         <p class="empty">Your cart is empty!</p>
     {% endif %}
