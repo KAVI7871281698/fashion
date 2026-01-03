@@ -26,14 +26,69 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: #1A1A1A;
+  color: #F5F5F5;
 }
-th, td {
+
+/* Table Cells */
+th,
+td {
   padding: 14px;
   border-bottom: 1px solid #333;
+  text-align: left;
 }
+
+/* Header */
 th {
   background: #E50914;
+  font-weight: 600;
+  font-size: 14px;
 }
+
+/* Row hover */
+tbody tr:hover {
+  background: #222;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  th,
+  td {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  /* Make table scrollable */
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 700px; /* enables horizontal scroll */
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  th,
+  td {
+    padding: 8px;
+    font-size: 11px;
+  }
+}
+
 </style>
 
 {% endblock %}

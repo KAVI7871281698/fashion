@@ -28,21 +28,26 @@
 </div>
 
 <style>
+/* ===== TABLE WRAPPER ===== */
 .table-wrapper {
   background: #111;
   padding: 18px;
   border-radius: 12px;
   margin-top: 20px;
+  overflow-x: auto; /* important for mobile */
 }
 
+/* ===== TABLE ===== */
 .admin-table {
   width: 100%;
   border-collapse: collapse;
   background: #1A1A1A;
   border-radius: 10px;
   overflow: hidden;
+  min-width: 720px; /* enables scroll on small screens */
 }
 
+/* ===== HEADER ===== */
 .admin-table thead {
   background: #E50914;
 }
@@ -52,12 +57,16 @@
   text-align: left;
   padding: 14px 16px;
   font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
+/* ===== BODY ===== */
 .admin-table td {
   padding: 14px 16px;
   border-bottom: 1px solid #333;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .admin-table tbody tr:hover {
@@ -69,11 +78,62 @@
   border-bottom: none;
 }
 
+/* ===== EMPTY STATE ===== */
 .empty {
   text-align: center;
   padding: 20px;
   color: #999;
 }
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .admin-table {
+    min-width: 650px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .table-wrapper {
+    padding: 14px;
+  }
+
+  .admin-table {
+    min-width: 600px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .table-wrapper {
+    padding: 12px;
+  }
+
+  .admin-table {
+    min-width: 520px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+}
+
 </style>
 
 {% endblock %}
