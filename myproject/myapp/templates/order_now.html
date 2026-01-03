@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Order Summary</title>
+  <meta charset="UTF-8">
+  <title>Order Summary</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <style>
+<style>
 /* ================= THEME ================= */
 :root {
   --white: #ffffff;
@@ -24,6 +24,14 @@
   --card-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
 }
 
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
 /* ================= BODY ================= */
 body {
   background: linear-gradient(
@@ -33,7 +41,6 @@ body {
     var(--sky-light) 100%
   );
   color: var(--dark-text);
-  font-family: "Poppins", sans-serif;
 }
 
 /* ================= CONTAINER ================= */
@@ -63,9 +70,14 @@ h1 {
 }
 
 /* ================= TABLE ================= */
+.table-responsive {
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 650px;
 }
 
 th,
@@ -73,24 +85,23 @@ td {
   padding: 12px;
   border-bottom: 1px solid var(--border-light);
   font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
 }
 
 th {
   color: var(--fire-red);
-  text-align: left;
-}
-
-td {
-  color: var(--dark-text);
 }
 
 /* ================= PRODUCT IMAGE ================= */
-img {
+table img {
   width: 50px;
   height: 50px;
   border-radius: 6px;
   object-fit: cover;
   border: 1px solid var(--border-light);
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
 /* ================= INPUTS ================= */
@@ -101,15 +112,9 @@ select {
   padding: 10px 12px;
   background: var(--white);
   border: 1px solid var(--border-light);
-  color: var(--dark-text);
   border-radius: 8px;
   margin-bottom: 15px;
   font-size: 14px;
-}
-
-textarea::placeholder,
-input::placeholder {
-  color: #999;
 }
 
 textarea:focus,
@@ -126,44 +131,115 @@ select:focus {
   justify-content: space-between;
   margin: 6px 0;
   font-size: 15px;
-  color: var(--dark-text);
 }
 
-/* ================= ORDER BUTTON ================= */
+/* ================= BUTTONS ================= */
 .order-btn {
   width: 100%;
   padding: 14px;
   background: var(--fire-red);
-  color: #ffffff;
+  color: #fff;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   font-size: 15px;
-  transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .order-btn:hover {
   background: #b20710;
-  box-shadow: 0 0 14px rgba(229, 9, 20, 0.45);
 }
 
-/* ================= APPLY BUTTON ================= */
 .apply-btn {
-  background: var(--gold);
-  color: #000000;
-  border: none;
-  padding: 10px;
   width: 100%;
+  padding: 10px;
+  background: var(--gold);
+  border: none;
   border-radius: 8px;
+  font-size: 14px;
   cursor: pointer;
   margin-bottom: 10px;
-  font-size: 14px;
-  transition: 0.3s ease;
 }
 
 .apply-btn:hover {
   background: #c9a633;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .checkout-container {
+    width: 94%;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  th,
+  td {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  table img {
+    width: 44px;
+    height: 44px;
+  }
+
+  textarea,
+  input,
+  select {
+    font-size: 13px;
+  }
+
+  .price-row {
+    font-size: 14px;
+  }
+
+  .order-btn,
+  .apply-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  table {
+    min-width: 560px;
+  }
+
+  table img {
+    width: 40px;
+    height: 40px;
+  }
+
+  textarea,
+  input,
+  select {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .price-row {
+    font-size: 13px;
+  }
 }
 </style>
 </head>
@@ -171,130 +247,104 @@ select:focus {
 <body>
 
 <div class="checkout-container">
-    <h1>🧾 Order Summary</h1>
+  <h1>🧾 Order Summary</h1>
 
-    <!-- CART -->
+  <!-- CART TABLE -->
+  <div class="box table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+        <tr>
+          <td>
+            <img src="{{ item.add_to_cart_product.product_img.url }}">
+            {{ item.add_to_cart_product.product_name }}
+          </td>
+          <td>₹{{ item.add_to_cart_product.product_price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹{{ item.total_price }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FORM -->
+  <form method="POST" action="{% url 'order_now' %}">
+    {% csrf_token %}
+
     <div class="box">
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in cart_items %}
-                <tr>
-                    <td>
-                        <img src="{{ item.add_to_cart_product.product_img.url }}">
-                        {{ item.add_to_cart_product.product_name }}
-                    </td>
-                    <td>₹{{ item.add_to_cart_product.product_price }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>₹{{ item.total_price }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+      <label>📍 Delivery Address</label>
+      <textarea name="delivery_address" required></textarea>
+
+      <label>📅 Delivery Date</label>
+      <input type="date" name="delivery_date" required>
+
+      <label>🎟 Select Coupon</label>
+      <select id="couponSelect" name="coupon_code">
+        <option value="">-- Select Coupon --</option>
+        {% for c in coupons %}
+        <option value="{{ c.code }}" data-type="{{ c.discount_type }}" data-value="{{ c.discount_value }}">
+          {{ c.code }}
+        </option>
+        {% endfor %}
+      </select>
+
+      <button type="button" class="apply-btn" onclick="applyCoupon()">Apply Coupon</button>
     </div>
 
-    <!-- ORDER FORM -->
-    <form method="POST" action="{% url 'order_now' %}">
-        {% csrf_token %}
+    <div class="box">
+      <div class="price-row">
+        <span>Subtotal</span>
+        <strong>₹<span id="subtotal">{{ total_amount }}</span></strong>
+      </div>
 
-        <div class="box">
-            <label>📍 Delivery Address</label>
-            <textarea name="delivery_address" required></textarea>
+      <div class="price-row">
+        <span>Discount</span>
+        <strong>- ₹<span id="discount">0.00</span></strong>
+      </div>
 
-            <label>📅 Delivery Date</label>
-            <input type="date" name="delivery_date" required>
+      <hr>
 
-            <!-- COUPON -->
-            <label>🎟 Select Coupon</label>
-            <select id="couponSelect" name="coupon_code">
-                <option value="">-- Select Coupon --</option>
-                {% for c in coupons %}
-                <option
-                    value="{{ c.code }}"
-                    data-type="{{ c.discount_type }}"
-                    data-value="{{ c.discount_value }}"
-                >
-                    {{ c.code }} (
-                    {% if c.discount_type == "flat" %}
-                        ₹{{ c.discount_value }} OFF
-                    {% else %}
-                        {{ c.discount_value }}% OFF
-                    {% endif %}
-                    )
-                </option>
-                {% endfor %}
-            </select>
+      <div class="price-row">
+        <span>Total Payable</span>
+        <strong>₹<span id="final">{{ total_amount }}</span></strong>
+      </div>
 
-            <button type="button" class="apply-btn" onclick="applyCoupon()">
-                Apply Coupon
-            </button>
-        </div>
-
-        <!-- TOTAL -->
-        <div class="box">
-            <div class="price-row">
-                <span>Subtotal</span>
-                <strong>₹<span id="subtotal">{{ total_amount }}</span></strong>
-            </div>
-
-            <div class="price-row">
-                <span>Discount</span>
-                <strong>- ₹<span id="discount">0.00</span></strong>
-            </div>
-
-            <hr>
-
-            <div class="price-row">
-                <span>Total Payable</span>
-                <strong>₹<span id="final">{{ total_amount }}</span></strong>
-            </div>
-
-            <button type="submit" class="order-btn">
-                Proceed to Payment
-            </button>
-        </div>
-    </form>
+      <button type="submit" class="order-btn">Proceed to Payment</button>
+    </div>
+  </form>
 </div>
 
-<!-- ✅ FIXED COUPON LOGIC -->
 <script>
 function applyCoupon() {
-    const select = document.getElementById("couponSelect");
-    const option = select.options[select.selectedIndex];
+  const select = document.getElementById("couponSelect");
+  const option = select.options[select.selectedIndex];
 
-    if (!option.value) {
-        alert("Please select a coupon");
-        return;
-    }
+  if (!option.value) {
+    alert("Please select a coupon");
+    return;
+  }
 
-    const type = option.dataset.type;
-    const value = parseFloat(option.dataset.value);
-    const subtotal = parseFloat(document.getElementById("subtotal").innerText);
+  const type = option.dataset.type;
+  const value = parseFloat(option.dataset.value);
+  const subtotal = parseFloat(document.getElementById("subtotal").innerText);
 
-    let discount = 0;
+  let discount = type === "flat"
+    ? value
+    : (value / 100) * subtotal;
 
-    if (type === "flat") {
-        discount = value;
-    } else {
-        discount = (value / 100) * subtotal;
-    }
+  if (discount >= subtotal) discount = subtotal - 1;
 
-    // ✅ CAP DISCOUNT (never allow 0 or negative payable)
-    if (discount >= subtotal) {
-        discount = subtotal - 1; // keep minimum ₹1
-    }
-
-    const final = subtotal - discount;
-
-    document.getElementById("discount").innerText = discount.toFixed(2);
-    document.getElementById("final").innerText = final.toFixed(2);
+  document.getElementById("discount").innerText = discount.toFixed(2);
+  document.getElementById("final").innerText = (subtotal - discount).toFixed(2);
 }
 </script>
 
