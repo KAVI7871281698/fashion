@@ -4,23 +4,33 @@
 {% block content %}
 
 <!-- ================= BANNER GRID ================= -->
-<section class="banner-grid-row">
+<section class="banner-wrapper">
+  <!-- LEFT IMAGE SLIDER -->
   {% for i in banner %}
-    <div class="banner-col">
-      <img src="{{ i.bannerimg1.url }}" alt="Banner Left">
-    </div>
-
-    <div class="banner-col center-video">
-      <video autoplay muted loop playsinline>
-        <source src="{{ i.bannervideo.url }}" type="video/mp4">
-      </video>
-    </div>
-
-    <div class="banner-col">
-      <img src="{{ i.bannerimg2.url }}" alt="Banner Right">
-    </div>
+  <div class="slider">
+    <img src="{{ i.bannerimg1.url }}" />
+    <img src="{{ i.bannerimg2.url }}" />
+    <img src="{{ i.bannerimg3.url }}" />
+  </div>
   {% endfor %}
+
+  <!-- RIGHT CONTENT -->
+  <div class="banner-content">
+    <h1>
+      Unlock success with<br />
+      our drag-and-drop<br />
+      landing page creator
+    </h1>
+
+    <p>
+      Say goodbye to design and development hassles and
+      build stunning landing pages effortlessly.
+    </p>
+
+    <button>I'm Ready To Start Building</button>
+  </div>
 </section>
+
 
 <!-- ================= HERO ================= -->
 <section class="hero">
@@ -104,51 +114,21 @@ function copyCoupon(code) {
 
 <!-- ================= STYLES ================= -->
 <style>
-/* ================= THEME ================= */
-:root {
-  --white: #ffffff;
-  --sky-soft: #f2f9ff;
-  --sky-light: #e6f3ff;
-
-  --fire-red: #e50914;
-  --gold: #d4af37;
-
-  --dark-text: #111111;
-  --soft-gray: #666666;
-
-  --border-light: rgba(0, 0, 0, 0.12);
-  --card-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
-}
-
 /* ---------- COUPON SECTION ---------- */
 .coupon-section {
   padding: 80px 8%;
-  background: linear-gradient(
-    180deg,
-    var(--white) 0%,
-    var(--sky-soft) 60%,
-    var(--sky-light) 100%
-  );
+  background: linear-gradient(180deg, #000, #0a0a0a);
   text-align: center;
 }
 
-/* TITLE */
 .coupon-title {
   font-size: 32px;
-  font-weight: 700;
-  background: linear-gradient(
-    90deg,
-    #b89b2e,
-    #ffd700,
-    var(--fire-red)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #d4af37;
   margin-bottom: 5px;
 }
 
 .coupon-subtitle {
-  color: var(--soft-gray);
+  color: #aaa;
   margin-bottom: 40px;
   font-size: 14px;
 }
@@ -162,21 +142,20 @@ function copyCoupon(code) {
 
 /* CARD */
 .coupon-card {
-  background: var(--white);
-  border: 1px dashed var(--gold);
-  border-radius: 18px;
+  background: #111;
+  border: 1px dashed #d4af37;
+  border-radius: 16px;
   padding: 25px 20px;
   position: relative;
-  animation: slideUp 0.6s ease forwards;
-  transition: all 0.35s ease;
-  box-shadow: var(--card-shadow);
+  animation: slideUp 0.8s ease forwards;
+  transition: 0.4s;
 }
 
 /* SLIDE ANIMATION */
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -189,31 +168,30 @@ function copyCoupon(code) {
   position: absolute;
   top: -12px;
   right: 16px;
-  background: var(--fire-red);
-  color: #ffffff;
+  background: #e50914;
+  color: #fff;
   padding: 4px 10px;
   font-size: 11px;
   border-radius: 20px;
   letter-spacing: 1px;
-  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.35);
 }
 
 /* TEXT */
 .coupon-card h3 {
   font-size: 22px;
-  color: var(--fire-red);
+  color: #e50914;
   margin-bottom: 10px;
 }
 
 .discount {
   font-size: 20px;
-  font-weight: 700;
-  color: var(--dark-text);
+  font-weight: bold;
+  color: #fff;
   margin-bottom: 6px;
 }
 
 .coupon-card small {
-  color: var(--soft-gray);
+  color: #aaa;
   font-size: 12px;
 }
 
@@ -223,27 +201,182 @@ function copyCoupon(code) {
   padding: 10px 22px;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(
-    135deg,
-    var(--fire-red),
-    #b20710
-  );
-  color: #ffffff;
+  background: linear-gradient(135deg, #e50914, #b20710);
+  color: #fff;
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 .copy-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(229, 9, 20, 0.45);
+  box-shadow: 0 0 18px rgba(229, 9, 20, 0.6);
 }
 
 /* HOVER CARD */
 .coupon-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(229, 9, 20, 0.18);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
+
+/* ================= BANNER SECTION ================= */
+.banner-wrapper {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;   /* image side bigger */
+  align-items: center;
+  gap: 80px;
+  padding: 120px 8%;
+  background: #f4f8ff;
+  min-height: 700px;                  /* increased section height */
+}
+
+/* ================= LEFT IMAGE SLIDER ================= */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 560px;                      /* increased image height */
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* SLIDER IMAGES */
+.slider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                  /* keeps image ratio */
+  opacity: 0;
+  animation: slideFade 9s infinite;
+}
+
+/* IMAGE TIMING (3s each) */
+.slider img:nth-child(1) { animation-delay: 0s; }
+.slider img:nth-child(2) { animation-delay: 3s; }
+.slider img:nth-child(3) { animation-delay: 6s; }
+
+/* FADE ANIMATION */
+@keyframes slideFade {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  30%  { opacity: 1; }
+  40%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ================= RIGHT CONTENT ================= */
+/* ================= BANNER SECTION ================= */
+.banner-wrapper {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: 80px;
+  padding: 120px 8%;
+  background: #f4f8ff;
+  min-height: 700px;
+}
+
+/* ================= LEFT IMAGE SLIDER ================= */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 560px;              /* fixed display size */
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;           /* avoids white gaps */
+}
+
+/* IMAGE SETTINGS – IMPORTANT PART */
+.slider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;        /* ✅ shows FULL image */
+  object-position: center;    /* centers image */
+
+  opacity: 0;
+  animation: slideFade 9s infinite;
+}
+
+/* IMAGE TIMING (3 SECONDS EACH) */
+.slider img:nth-child(1) { animation-delay: 0s; }
+.slider img:nth-child(2) { animation-delay: 3s; }
+.slider img:nth-child(3) { animation-delay: 6s; }
+
+/* FADE ANIMATION */
+@keyframes slideFade {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  30%  { opacity: 1; }
+  40%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ================= RIGHT CONTENT ================= */
+.banner-content h1 {
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #000;
+}
+
+.banner-content p {
+  margin: 26px 0;
+  font-size: 18px;
+  color: #555;
+  max-width: 540px;
+}
+
+.banner-content button {
+  background: #e50914;
+  color: #fff;
+  border: none;
+  padding: 18px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.banner-content button:hover {
+  opacity: 0.9;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .banner-wrapper {
+    grid-template-columns: 1fr;
+    padding: 80px 6%;
+    text-align: center;
+  }
+
+  .slider {
+    height: 420px;
+  }
+
+  .banner-content h1 {
+    font-size: 40px;
+  }
+
+  .banner-content p {
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .slider {
+    height: 320px;
+  }
+
+  .banner-content h1 {
+    font-size: 32px;
+  }
+}
+
+
 </style>
 
 {% endblock %}

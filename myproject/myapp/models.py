@@ -56,7 +56,7 @@ class product(models.Model):
 class home(models.Model):
     bannerimg1 = models.ImageField(upload_to='uploads', null=True, blank=True)
     bannerimg2 = models.ImageField(upload_to='uploads', null=True, blank=True)
-    bannervideo = models.FileField(upload_to='uploads/banners/videos/', null=True, blank=True)
+    bannerimg3 = models.ImageField(upload_to='uploads', null=True, blank=True)
 
     def __str__(self):
         return "Home Banner"
