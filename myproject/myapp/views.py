@@ -18,7 +18,7 @@ def login_required(f):
     @wraps(f) 
     def wrapped(request,*args,**kwargs):
         if not request.session.get('is_logged_in'):
-            return redirect('signin')
+            return redirect('login')
         return f(request,*args,**kwargs)
     return wrapped
 
