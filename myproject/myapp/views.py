@@ -9,15 +9,22 @@ from django.utils import timezone
 from decimal import Decimal
 from django.db.models import Sum
 from django.utils import timezone
+from functools import wraps
 
 
 # ================= BASIC PAGES =================
 
+def login_required(f):
+    @wraps(f) 
+    def wrapped(request,*args,**kwargs):
+        if not request.session.get('is_logged_in'):
+            return redirect('signin')
+        return f(request,*args,**kwargs)
+    return wrapped
+
 def base(request):
     return render(request,'base.html')
 
-def landing(request):
-    return render(request, 'landing_page.html')
 
 def index(request):
     banner = home.objects.all()
@@ -206,11 +213,6 @@ def register(request):
     return render(request, 'register.html')
 
 
-def logout(request):
-    request.session.flush()
-    return redirect('login')
-
-
 # ================= CATEGORIES =================
 
 def categories(request):
@@ -245,7 +247,7 @@ def categories(request):
 
 
 # ================= ADD TO CART =================
-
+@login_required
 def cart(request, id):
     email = request.session.get('email')
 
@@ -270,7 +272,7 @@ def cart(request, id):
 
 
 # ================= CART =================
-
+@login_required
 def view_cart(request):
     email = request.session.get('email')
     if not email:
@@ -285,7 +287,7 @@ def view_cart(request):
         'total_amount': total_amount
     })
 
-
+@login_required
 def increase_quantity(request, id):
     user = Register.objects.get(email=request.session.get('email'))
     item = get_object_or_404(add_to_cart, id=id, user=user)
@@ -293,7 +295,7 @@ def increase_quantity(request, id):
     item.save()
     return redirect('view_cart')
 
-
+@login_required
 def decrease_quantity(request, id):
     user = Register.objects.get(email=request.session.get('email'))
     item = get_object_or_404(add_to_cart, id=id, user=user)
@@ -306,7 +308,7 @@ def decrease_quantity(request, id):
 
     return redirect('view_cart')
 
-
+@login_required
 def remove_cart_item(request, id):
     user = Register.objects.get(email=request.session.get('email'))
     item = get_object_or_404(add_to_cart, id=id, user=user)
@@ -315,7 +317,7 @@ def remove_cart_item(request, id):
 
 
 # ================= ORDER PAGE =================
-
+@login_required
 def order_now_page(request):
     user = Register.objects.get(email=request.session.get('email'))
     cart_items = add_to_cart.objects.filter(user=user)
@@ -338,6 +340,7 @@ def order_now_page(request):
 
 
 # ================= APPLY COUPON & PAY =================
+@login_required
 def order_now(request):
     user = Register.objects.get(email=request.session.get('email'))
     cart_items = add_to_cart.objects.filter(user=user)
@@ -419,6 +422,7 @@ def order_now(request):
     })
 
 # ================= PAYMENT SUCCESS =================
+@login_required
 def payment_success(request):
     email = request.session.get('email')
     if not email:
@@ -461,7 +465,7 @@ def payment_success(request):
     return redirect('order_success')
 
 
-
+@login_required
 def order_success(request):
     return render(request, 'order_success.html')
 
