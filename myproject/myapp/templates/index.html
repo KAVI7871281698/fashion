@@ -117,38 +117,70 @@ function copyCoupon(code) {
 /* ---------- COUPON SECTION ---------- */
 .coupon-section {
   padding: 80px 8%;
-  background: linear-gradient(180deg, #000, #0a0a0a);
+  background: #ffffff; /* ✅ WHITE BACKGROUND */
   text-align: center;
 }
 
+/* TITLE */
 .coupon-title {
-  font-size: 32px;
-  color: #d4af37;
-  margin-bottom: 5px;
+  font-size: 34px;
+  color: #111;
+  margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .coupon-subtitle {
-  color: #aaa;
-  margin-bottom: 40px;
+  color: #666;
+  margin-bottom: 45px;
   font-size: 14px;
 }
 
 /* GRID */
 .coupon-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
 }
 
-/* CARD */
+/* ---------- CARD ---------- */
 .coupon-card {
-  background: #111;
-  border: 1px dashed #d4af37;
-  border-radius: 16px;
-  padding: 25px 20px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 22px;
   position: relative;
-  animation: slideUp 0.8s ease forwards;
+  overflow: hidden;
   transition: 0.4s;
+  animation: slideUp 0.8s ease forwards;
+}
+
+/* 🌈 ANIMATED BORDER */
+.coupon-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 18px;
+  background: linear-gradient(
+    120deg,
+    #e50914,
+    #d4af37,
+    #e50914
+  );
+  background-size: 300% 300%;
+  animation: borderMove 4s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* BORDER ANIMATION */
+@keyframes borderMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* SLIDE ANIMATION */
@@ -167,13 +199,14 @@ function copyCoupon(code) {
 .coupon-badge {
   position: absolute;
   top: -12px;
-  right: 16px;
+  right: 18px;
   background: #e50914;
   color: #fff;
-  padding: 4px 10px;
+  padding: 5px 12px;
   font-size: 11px;
   border-radius: 20px;
   letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(229,9,20,0.4);
 }
 
 /* TEXT */
@@ -184,39 +217,39 @@ function copyCoupon(code) {
 }
 
 .discount {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  color: #fff;
+  color: #111;
   margin-bottom: 6px;
 }
 
 .coupon-card small {
-  color: #aaa;
-  font-size: 12px;
+  color: #777;
+  font-size: 13px;
 }
 
 /* BUTTON */
 .copy-btn {
-  margin-top: 18px;
-  padding: 10px 22px;
+  margin-top: 20px;
+  padding: 11px 26px;
   border: none;
   border-radius: 30px;
   background: linear-gradient(135deg, #e50914, #b20710);
   color: #fff;
   font-size: 14px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.35s;
 }
 
 .copy-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(229, 9, 20, 0.6);
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.5);
 }
 
 /* HOVER CARD */
 .coupon-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.15);
 }
 
 /* ================= BANNER SECTION ================= */
